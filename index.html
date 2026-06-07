@@ -431,7 +431,7 @@
       <li><a href="#apps">Apps</a></li>
       <li><a href="#consulting">Consulting</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="mailto:david@workstreamapps.com">Contact</a></li>
+      <li><a href="#" onclick="event.preventDefault();document.getElementById('emailPopup').classList.add('open')">Contact</a></li>
     </ul>
   </nav>
 
@@ -442,7 +442,7 @@
     <p>Thoughtful iOS apps and hands-on consulting that reduce friction, build momentum, and actually fit how people work.</p>
     <div class="hero-cta">
       <a href="#apps" class="btn-primary">See Our Work</a>
-      <a href="mailto:david@workstreamapps.com" class="btn-ghost">Get in Touch</a>
+      <a href="#" onclick="event.preventDefault();document.getElementById('emailPopup').classList.add('open')" class="btn-ghost">Get in Touch</a>
     </div>
   </section>
 
@@ -526,7 +526,7 @@
             </ul>
             <div class="project-links">
               <a href="https://www.runfreeapps.com/cowork-training" target="_blank" rel="noopener" class="link-btn primary">Learn More</a>
-              <a href="mailto:david@workstreamapps.com" class="link-btn secondary">Inquire</a>
+              <a href="#" onclick="event.preventDefault();document.getElementById('emailPopup').classList.add('open')" class="link-btn secondary">Inquire</a>
             </div>
           </div>
         </div>
@@ -553,7 +553,7 @@
     <div>
       <a href="/anchor/privacy">Privacy Policy</a>
       <a href="/anchor/terms">Terms of Use</a>
-      <a href="mailto:david@workstreamapps.com">Contact</a>
+      <button onclick="document.getElementById('emailPopup').classList.add('open')" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.55);font-size:13px;margin:0 10px;font-family:inherit;">Contact</button>
     </div>
   </footer>
 
