@@ -1,5 +1,9 @@
 # Cloudflare Pages redirects
-# Clean URLs — these let /anchor/privacy work without .html
 
+# App URLs (hardcoded in LegalScreen.tsx) → full content pages
 /anchor/privacy   /anchor/privacy/index.html   200
 /anchor/terms     /anchor/terms/index.html     200
+
+# Flat URL aliases → same pages (in case linked from anywhere)
+/privacy          /anchor/privacy/index.html   200
+/terms            /anchor/terms/index.html     200
