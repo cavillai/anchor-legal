@@ -1,0 +1,5 @@
+# Cloudflare Pages redirects
+# Clean URLs — these let /anchor/privacy work without .html
+
+/anchor/privacy   /anchor/privacy/index.html   200
+/anchor/terms     /anchor/terms/index.html     200
