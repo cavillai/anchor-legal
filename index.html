@@ -3,59 +3,497 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WorkStream Apps LLC</title>
+  <title>WorkStream Apps LLC — Apps & Consulting for Real Life</title>
+  <meta name="description" content="WorkStream Apps LLC builds thoughtful iOS apps and consulting services for people who want less friction and more focus in daily life." />
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:    #1B7A8A;
+      --deep:    #2D3561;
+      --accent:  #F4A261;
+      --green:   #7FB069;
+      --bg:      #F7F9F8;
+      --card:    #FFFFFF;
+      --text:    #2C3333;
+      --muted:   #6B7B8D;
+      --border:  #E2E8F0;
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #F7F9F8;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247,249,248,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .nav-brand-icon { font-size: 20px; }
+    .nav-brand-text {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: -0.2px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #1B7A8A 0%, #2D3561 100%);
+      padding: 100px 24px 80px;
+      text-align: center;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.9);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      max-width: 700px;
+      margin: 0 auto 20px;
+    }
+    .hero p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.78);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+    .hero-cta {
+      display: inline-flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 28px;
+      background: #fff;
+      color: var(--teal);
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .btn-ghost {
+      display: inline-block;
+      padding: 14px 28px;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 30px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: background 0.15s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.2); }
+
+    /* ── SECTIONS ── */
+    section { padding: 80px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 52px;
+    }
+
+    /* ── PROJECT CARDS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .project-card {
+      background: var(--card);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(44,51,51,0.07);
+      border: 1px solid var(--border);
       display: flex;
       flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(44,51,51,0.12);
+    }
+    .project-card-header {
+      padding: 32px 28px 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .project-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 14px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      margin: 0;
+      font-size: 28px;
+      flex-shrink: 0;
     }
-    .card {
-      text-align: center;
-      padding: 48px 40px;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(44,51,51,0.08);
-      max-width: 400px;
+    .project-icon.anchor  { background: linear-gradient(135deg, #C6EBE5, #A8D8E0); }
+    .project-icon.run     { background: linear-gradient(135deg, #FFE0C8, #FFDAB3); }
+    .project-icon.cowork  { background: linear-gradient(135deg, #D4E8FF, #BDD5F0); }
+    .project-meta { flex: 1; }
+    .project-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
     }
-    .icon { font-size: 48px; margin-bottom: 16px; }
-    h1 { font-size: 22px; color: #1B7A8A; margin-bottom: 8px; }
-    p { color: #6B7B8D; font-size: 15px; margin-bottom: 24px; }
-    .links a {
-      display: inline-block;
-      color: #1B7A8A;
-      text-decoration: none;
+    .project-name {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.3px;
+      line-height: 1.2;
+    }
+    .project-body {
+      padding: 0 28px 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-desc {
       font-size: 15px;
-      margin: 4px 12px;
-      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      flex: 1;
     }
-    footer {
-      margin-top: 32px;
+    .project-features {
+      list-style: none;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .project-features li {
+      font-size: 14px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .project-features li::before {
+      content: '✓';
+      font-weight: 700;
+      color: var(--green);
       font-size: 13px;
-      color: #6B7B8D;
+    }
+    .project-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .link-btn {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 22px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .link-btn.primary {
+      background: var(--teal);
+      color: #fff;
+    }
+    .link-btn.primary:hover { background: #155f6d; }
+    .link-btn.secondary {
+      background: var(--bg);
+      color: var(--teal);
+      border: 1px solid var(--border);
+    }
+    .link-btn.secondary:hover { background: var(--border); }
+
+    /* ── ABOUT STRIP ── */
+    .about-strip {
+      background: linear-gradient(135deg, #2D3561 0%, #1B7A8A 100%);
+      padding: 80px 24px;
       text-align: center;
     }
-    footer a { color: #1B7A8A; text-decoration: none; }
+    .about-avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.3);
+      margin: 0 auto 20px;
+      object-fit: cover;
+      display: block;
+      background: rgba(255,255,255,0.15);
+      font-size: 40px;
+      line-height: 88px;
+      text-align: center;
+    }
+    .about-strip h2 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .about-strip p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.78);
+      max-width: 560px;
+      margin: 0 auto 28px;
+      line-height: 1.7;
+    }
+    .social-links {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .social-link {
+      display: inline-block;
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 22px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .social-link:hover { background: rgba(255,255,255,0.22); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    footer p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+    }
+    footer a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 13px;
+    }
+    footer a:hover { color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .hero { padding: 72px 20px 60px; }
+      section { padding: 60px 20px; }
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="icon">⚓</div>
-    <h1>WorkStream Apps LLC</h1>
-    <p>Makers of Anchor: ADHD Companion</p>
-    <div class="links">
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-brand">
+      <span class="nav-brand-icon">⚡</span>
+      <span class="nav-brand-text">WorkStream Apps LLC</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#apps">Apps</a></li>
+      <li><a href="#consulting">Consulting</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="mailto:support@workstreamapps.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">WorkStream Apps LLC</div>
+    <h1>Apps & Consulting Built for Real Life</h1>
+    <p>Thoughtful iOS apps and hands-on consulting that reduce friction, build momentum, and actually fit how people work.</p>
+    <div class="hero-cta">
+      <a href="#apps" class="btn-primary">See Our Work</a>
+      <a href="mailto:support@workstreamapps.com" class="btn-ghost">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="apps">
+    <div class="section-inner">
+      <div class="section-label">What We Build</div>
+      <h2 class="section-title">Apps & Services</h2>
+      <p class="section-sub">From iOS apps to consulting engagements — everything we ship is designed around how people actually think and work.</p>
+
+      <div class="projects-grid">
+
+        <!-- ANCHOR -->
+        <div class="project-card">
+          <div class="project-card-header">
+            <div class="project-icon anchor">⚓</div>
+            <div class="project-meta">
+              <div class="project-tag">iOS App · Free + Pro</div>
+              <div class="project-name">Anchor: ADHD Companion</div>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">
+              A private, on-device AI companion for daily routines. Anchor helps people with ADHD build and keep habits with zero judgment — and a chain that never breaks.
+            </p>
+            <ul class="project-features">
+              <li>100% on-device — no accounts, no cloud</li>
+              <li>Apple Intelligence AI that learns your patterns</li>
+              <li>The chain grows every day — never breaks</li>
+              <li>Free core · Pro AI for $2.99/mo or $24.99 lifetime</li>
+            </ul>
+            <div class="project-links">
+              <a href="/anchor" class="link-btn primary">Learn More</a>
+              <a href="/anchor/privacy" class="link-btn secondary">Privacy</a>
+              <a href="/anchor/terms" class="link-btn secondary">Terms</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- RUNFREEAPPS -->
+        <div class="project-card">
+          <div class="project-card-header">
+            <div class="project-icon run">🏃</div>
+            <div class="project-meta">
+              <div class="project-tag">iOS App · RunFreeApps</div>
+              <div class="project-name">RunFreeApps</div>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">
+              iOS apps built around movement, freedom, and getting outside. RunFreeApps designs experiences for people who are active, on the go, and don't want tech getting in the way.
+            </p>
+            <ul class="project-features">
+              <li>Built for active, on-the-go users</li>
+              <li>Clean, fast, minimal UI</li>
+              <li>Privacy-first — no unnecessary tracking</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://www.runfreeapps.com" target="_blank" rel="noopener" class="link-btn primary">Visit Site</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- COWORK CONSULTING -->
+        <div class="project-card">
+          <div class="project-card-header">
+            <div class="project-icon cowork">🤝</div>
+            <div class="project-meta">
+              <div class="project-tag">Consulting & Training</div>
+              <div class="project-name">Cowork Consulting & Training</div>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">
+              Hands-on consulting and training for teams and individuals navigating coworking, productivity systems, and modern work environments. Real tools, real people, real results.
+            </p>
+            <ul class="project-features">
+              <li>Coworking strategy & space consulting</li>
+              <li>Productivity systems for teams</li>
+              <li>1-on-1 and group training sessions</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://www.runfreeapps.com/cowork-training" target="_blank" rel="noopener" class="link-btn primary">Learn More</a>
+              <a href="mailto:support@workstreamapps.com" class="link-btn secondary">Inquire</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <div class="about-strip" id="about">
+    <div style="font-size:52px; margin-bottom:16px;">👤</div>
+    <h2>David Cavill — Founder</h2>
+    <p>Builder, consultant, and app developer based in Florida. I build tools that make daily life less complicated for real people — including myself.</p>
+    <div class="social-links">
+      <a href="https://linktr.ee/davidcavill" target="_blank" rel="noopener" class="social-link">🌿 Linktree</a>
+      <a href="mailto:support@workstreamapps.com" class="social-link">✉️ Email</a>
+      <a href="https://www.runfreeapps.com" target="_blank" rel="noopener" class="social-link">🏃 RunFreeApps</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 WorkStream Apps LLC · All rights reserved.</p>
+    <div>
       <a href="/anchor/privacy">Privacy Policy</a>
       <a href="/anchor/terms">Terms of Use</a>
       <a href="mailto:support@workstreamapps.com">Contact</a>
     </div>
-  </div>
-  <footer>
-    <p>&copy; 2026 WorkStream Apps LLC. All rights reserved.</p>
   </footer>
+
 </body>
 </html>

@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anchor: ADHD Companion — Routines that stick. A chain that never breaks.</title>
+  <meta name="description" content="Anchor is a private, on-device AI companion for ADHD daily routines. No accounts. No cloud. Just a chain that keeps growing." />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Anchor: ADHD Companion" />
+  <meta property="og:description" content="Routines that stick. A chain that never breaks. Private, on-device AI for ADHD daily life." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://workstreamapps.com/anchor" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:   #1B7A8A;
+      --deep:   #2D3561;
+      --accent: #F4A261;
+      --green:  #7FB069;
+      --bg:     #F7F9F8;
+      --card:   #FFFFFF;
+      --text:   #2C3333;
+      --muted:  #6B7B8D;
+      --border: #E2E8F0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(247,249,248,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .nav-brand-icon { font-size: 18px; }
+    .nav-brand-name { font-size: 15px; font-weight: 700; color: var(--teal); }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-link { font-size: 14px; color: var(--muted); text-decoration: none; font-weight: 500; }
+    .nav-link:hover { color: var(--teal); }
+    .nav-cta {
+      background: var(--teal); color: #fff;
+      padding: 8px 18px; border-radius: 20px;
+      font-size: 13px; font-weight: 700;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .nav-cta:hover { background: #155f6d; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #C6EBE5 0%, #E8F5F7 40%, #F0E8FF 100%);
+      padding: 100px 24px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 60% 0%, rgba(27,122,138,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .app-icon-wrap {
+      margin: 0 auto 28px;
+      width: 120px; height: 120px;
+      border-radius: 26px;
+      background: linear-gradient(135deg, #1B7A8A, #2D3561);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 56px;
+      box-shadow: 0 20px 60px rgba(27,122,138,0.3), 0 4px 16px rgba(0,0,0,0.1);
+    }
+    .hero-eyebrow {
+      font-size: 12px; font-weight: 700; letter-spacing: 1.4px;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 7vw, 64px);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+    .hero h1 span { color: var(--teal); }
+    .hero-sub {
+      font-size: 19px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+    .hero-actions {
+      display: flex; gap: 12px;
+      justify-content: center; flex-wrap: wrap;
+      margin-bottom: 52px;
+    }
+    .appstore-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #000; color: #fff;
+      padding: 13px 24px; border-radius: 14px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .appstore-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    .appstore-btn-icon { font-size: 26px; line-height: 1; }
+    .appstore-btn-text { text-align: left; }
+    .appstore-btn-sub { font-size: 10px; color: rgba(255,255,255,0.7); display: block; line-height: 1; margin-bottom: 2px; }
+    .appstore-btn-main { font-size: 17px; font-weight: 700; display: block; line-height: 1; }
+    .hero-link {
+      display: inline-block;
+      padding: 13px 24px;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      background: rgba(255,255,255,0.7);
+      transition: background 0.15s;
+    }
+    .hero-link:hover { background: #fff; }
+
+    /* Hero privacy badge */
+    .privacy-badges {
+      display: flex; gap: 10px;
+      justify-content: center; flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--border);
+      padding: 6px 12px; border-radius: 20px;
+      font-size: 12px; font-weight: 600; color: var(--muted);
+    }
+
+    /* ── SCREENSHOT ZONE ── */
+    .screens-section {
+      padding: 80px 24px;
+      background: var(--card);
+      text-align: center;
+    }
+    .screens-label { font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
+    .screens-title { font-size: clamp(24px, 4vw, 36px); font-weight: 800; color: var(--text); letter-spacing: -0.5px; margin-bottom: 12px; }
+    .screens-sub { font-size: 16px; color: var(--muted); max-width: 480px; margin: 0 auto 52px; }
+
+    .screens-row {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    /* Phone mockup frames — placeholder until real screenshots available */
+    .phone-frame {
+      width: 200px;
+      background: #1A1A1A;
+      border-radius: 36px;
+      padding: 12px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.08);
+      flex-shrink: 0;
+    }
+    .phone-frame.center-phone {
+      width: 220px;
+      transform: translateY(-16px);
+    }
+    .phone-screen {
+      border-radius: 26px;
+      overflow: hidden;
+      aspect-ratio: 9/19.5;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Simulated screens */
+    .screen-today {
+      background: linear-gradient(180deg, #C6EBE5 0%, #F7F9F8 30%);
+      flex: 1;
+      padding: 24px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .sim-header { font-size: 9px; font-weight: 800; color: #1B7A8A; }
+    .sim-greeting { font-size: 7px; color: #6B7B8D; margin-bottom: 4px; }
+    .sim-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 8px 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .sim-card-title { font-size: 7px; font-weight: 700; color: #2C3333; }
+    .sim-card-sub { font-size: 6px; color: #6B7B8D; margin-top: 2px; }
+    .sim-habit-row {
+      display: flex; align-items: center; gap: 6px;
+      background: #fff; border-radius: 10px; padding: 7px 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .sim-check { width: 14px; height: 14px; border-radius: 50%; background: #7FB069; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .sim-check-empty { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #B8C0CC; flex-shrink: 0; }
+    .sim-check::after { content: '✓'; font-size: 7px; color: #fff; font-weight: 800; }
+    .sim-habit-text { font-size: 7px; font-weight: 600; color: #2C3333; }
+    .sim-chain-row {
+      display: flex; gap: 3px; align-items: center;
+      background: #fff; border-radius: 10px; padding: 8px 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .sim-link { width: 14px; height: 8px; border-radius: 4px; background: #1B7A8A; opacity: 0.7; }
+    .sim-link.done { opacity: 1; }
+    .sim-link.soft { background: #B8C0CC; }
+
+    .screen-chain {
+      background: linear-gradient(180deg, #C6EBE5 0%, #F7F9F8 30%);
+      flex: 1;
+      padding: 24px 16px 16px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+
+    .screen-companion {
+      background: linear-gradient(180deg, #EEE8FF 0%, #F7F9F8 30%);
+      flex: 1;
+      padding: 24px 16px 16px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .sim-ai-badge {
+      display: inline-flex; align-items: center; gap: 3px;
+      background: #1B7A8A; color: #fff;
+      font-size: 5px; font-weight: 700; padding: 2px 6px; border-radius: 8px;
+      width: fit-content;
+    }
+    .sim-message {
+      background: #fff; border-radius: 10px; padding: 8px 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      border-left: 3px solid #1B7A8A;
+    }
+    .sim-message p { font-size: 6px; color: #2C3333; line-height: 1.6; }
+
+    /* ── FEATURES ── */
+    .features-section { padding: 100px 24px; }
+    .features-inner { max-width: 1100px; margin: 0 auto; }
+    .features-header { text-align: center; margin-bottom: 64px; }
+    .features-label { font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
+    .features-title { font-size: clamp(26px, 4vw, 38px); font-weight: 800; color: var(--text); letter-spacing: -0.5px; margin-bottom: 12px; }
+    .features-sub { font-size: 17px; color: var(--muted); max-width: 500px; margin: 0 auto; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(44,51,51,0.05);
+    }
+    .feature-icon { font-size: 32px; margin-bottom: 14px; }
+    .feature-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .feature-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+    /* ── PRIVACY SECTION ── */
+    .privacy-section {
+      background: linear-gradient(135deg, #1B7A8A 0%, #2D3561 100%);
+      padding: 100px 24px;
+      text-align: center;
+    }
+    .privacy-section h2 { font-size: clamp(28px, 5vw, 44px); font-weight: 800; color: #fff; letter-spacing: -0.8px; margin-bottom: 16px; }
+    .privacy-section p { font-size: 17px; color: rgba(255,255,255,0.78); max-width: 560px; margin: 0 auto 48px; line-height: 1.7; }
+    .privacy-pillars {
+      display: flex; gap: 16px;
+      justify-content: center; flex-wrap: wrap;
+      max-width: 780px; margin: 0 auto;
+    }
+    .pillar {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 24px 20px;
+      flex: 1; min-width: 160px; max-width: 200px;
+      text-align: center;
+    }
+    .pillar-icon { font-size: 28px; margin-bottom: 10px; }
+    .pillar-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .pillar-desc { font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+
+    /* ── PRICING ── */
+    .pricing-section { padding: 100px 24px; background: var(--card); text-align: center; }
+    .pricing-title { font-size: clamp(26px, 4vw, 38px); font-weight: 800; color: var(--text); letter-spacing: -0.5px; margin-bottom: 12px; }
+    .pricing-sub { font-size: 17px; color: var(--muted); max-width: 460px; margin: 0 auto 52px; }
+    .pricing-cards {
+      display: flex; gap: 20px;
+      justify-content: center; flex-wrap: wrap;
+      max-width: 760px; margin: 0 auto;
+    }
+    .pricing-card {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 28px;
+      flex: 1; min-width: 260px; max-width: 340px;
+      text-align: left;
+      position: relative;
+    }
+    .pricing-card.featured {
+      background: linear-gradient(135deg, #1B7A8A 0%, #2D3561 100%);
+      border-color: transparent;
+      box-shadow: 0 20px 60px rgba(27,122,138,0.25);
+    }
+    .pricing-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--accent); color: #fff;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+      padding: 4px 14px; border-radius: 20px;
+      white-space: nowrap;
+    }
+    .pricing-name { font-size: 14px; font-weight: 700; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.8px; }
+    .pricing-card.featured .pricing-name { color: rgba(255,255,255,0.7); }
+    .pricing-price { font-size: 42px; font-weight: 800; color: var(--text); letter-spacing: -1px; line-height: 1; margin-bottom: 6px; }
+    .pricing-card.featured .pricing-price { color: #fff; }
+    .pricing-period { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+    .pricing-card.featured .pricing-period { color: rgba(255,255,255,0.65); }
+    .pricing-features { list-style: none; margin-bottom: 28px; display: flex; flex-direction: column; gap: 10px; }
+    .pricing-features li { font-size: 14px; color: var(--text); display: flex; align-items: center; gap: 8px; }
+    .pricing-card.featured .pricing-features li { color: rgba(255,255,255,0.9); }
+    .pricing-features li::before { content: '✓'; font-weight: 800; color: var(--green); font-size: 13px; flex-shrink: 0; }
+    .pricing-card.featured .pricing-features li::before { color: #A8F0C0; }
+    .pricing-action {
+      display: block; text-align: center;
+      padding: 13px; border-radius: 14px;
+      font-size: 15px; font-weight: 700;
+      text-decoration: none;
+      background: var(--teal); color: #fff;
+      transition: background 0.15s;
+    }
+    .pricing-action:hover { background: #155f6d; }
+    .pricing-card.featured .pricing-action { background: #fff; color: var(--teal); }
+    .pricing-card.featured .pricing-action:hover { background: rgba(255,255,255,0.9); }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 100px 24px;
+      text-align: center;
+      background: var(--bg);
+    }
+    .cta-section h2 { font-size: clamp(28px, 5vw, 44px); font-weight: 800; color: var(--text); letter-spacing: -0.8px; margin-bottom: 14px; }
+    .cta-section p { font-size: 17px; color: var(--muted); max-width: 460px; margin: 0 auto 36px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    footer p { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 10px; }
+    footer a { color: rgba(255,255,255,0.55); text-decoration: none; margin: 0 10px; font-size: 13px; }
+    footer a:hover { color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; }
+      .nav-right .nav-link { display: none; }
+      .phone-frame { width: 150px; border-radius: 28px; }
+      .phone-frame.center-phone { width: 170px; }
+      .pricing-cards { flex-direction: column; align-items: center; }
+      .privacy-pillars { gap: 12px; }
+      .pillar { min-width: 140px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-brand">
+      <span class="nav-brand-icon">⚓</span>
+      <span class="nav-brand-name">Anchor</span>
+    </a>
+    <div class="nav-right">
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#privacy" class="nav-link">Privacy</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="#download" class="nav-cta">Download</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="download">
+    <div class="app-icon-wrap">⚓</div>
+    <div class="hero-eyebrow">Anchor: ADHD Companion · iOS App</div>
+    <h1>Routines that stick.<br><span>A chain that never breaks.</span></h1>
+    <p class="hero-sub">
+      A private, on-device AI companion built for ADHD daily life. Check off routines, grow your chain, and let Anchor learn what works for you — all without an account or internet connection.
+    </p>
+    <div class="hero-actions">
+      <a href="#" class="appstore-btn">
+        <span class="appstore-btn-icon">🍎</span>
+        <span class="appstore-btn-text">
+          <span class="appstore-btn-sub">Download on the</span>
+          <span class="appstore-btn-main">App Store</span>
+        </span>
+      </a>
+      <a href="#features" class="hero-link">See how it works</a>
+    </div>
+    <div class="privacy-badges">
+      <span class="badge">🔒 No account required</span>
+      <span class="badge">📴 100% offline</span>
+      <span class="badge">🧠 On-device AI</span>
+      <span class="badge">🆓 Free to start</span>
+    </div>
+  </section>
+
+  <!-- SCREENSHOT MOCKUPS -->
+  <section class="screens-section">
+    <div class="screens-label">The App</div>
+    <h2 class="screens-title">Everything you need. Nothing you don't.</h2>
+    <p class="screens-sub">Three tabs. Today's routines, your growing chain, and an AI companion that learns your patterns over time.</p>
+
+    <div class="screens-row">
+
+      <!-- Today Screen -->
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <div class="screen-today">
+            <div class="sim-header">⚓ Anchor</div>
+            <div class="sim-greeting">Good morning · Tuesday</div>
+            <div class="sim-card">
+              <div class="sim-card-title">🌅 Morning</div>
+              <div class="sim-card-sub">2 of 3 done</div>
+            </div>
+            <div class="sim-habit-row">
+              <div class="sim-check"></div>
+              <div class="sim-habit-text">💊 Morning meds</div>
+            </div>
+            <div class="sim-habit-row">
+              <div class="sim-check"></div>
+              <div class="sim-habit-text">🥤 Glass of water</div>
+            </div>
+            <div class="sim-habit-row">
+              <div class="sim-check-empty"></div>
+              <div class="sim-habit-text">🚶 Step outside</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chain Screen (center, elevated) -->
+      <div class="phone-frame center-phone">
+        <div class="phone-screen">
+          <div class="screen-chain">
+            <div class="sim-header">Your Chain</div>
+            <div class="sim-greeting">Progress that never breaks</div>
+            <div class="sim-card">
+              <div class="sim-card-title">14-day run 🔗</div>
+              <div class="sim-card-sub">Best: 14 · This week: 6/7</div>
+            </div>
+            <div class="sim-chain-row">
+              <div class="sim-link done"></div>
+              <div class="sim-link done"></div>
+              <div class="sim-link done"></div>
+              <div class="sim-link done"></div>
+              <div class="sim-link soft"></div>
+              <div class="sim-link done"></div>
+              <div class="sim-link done"></div>
+              <div class="sim-link done"></div>
+              <div class="sim-link done"></div>
+              <div class="sim-link done"></div>
+            </div>
+            <div class="sim-card">
+              <div class="sim-card-title">💊 Morning meds</div>
+              <div class="sim-card-sub">12-day run · Best: 12</div>
+            </div>
+            <div class="sim-card">
+              <div class="sim-card-title">🚶 Step outside</div>
+              <div class="sim-card-sub">7-day run · Best: 9</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Companion Screen -->
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <div class="screen-companion">
+            <div class="sim-header">⚓ Anchor</div>
+            <div class="sim-ai-badge">✦ On-device AI</div>
+            <div class="sim-message">
+              <p>Tuesdays have been your most consistent day — you've done it every one this month. That's a real pattern.</p>
+            </div>
+            <div class="sim-card">
+              <div class="sim-card-title">How's your day?</div>
+              <div class="sim-card-sub">Tap to check in</div>
+            </div>
+            <div class="sim-card">
+              <div class="sim-card-title">🌙 Tonight</div>
+              <div class="sim-card-sub">1 routine · Wind down</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-section" id="features">
+    <div class="features-inner">
+      <div class="features-header">
+        <div class="features-label">Features</div>
+        <h2 class="features-title">Built specifically for ADHD brains</h2>
+        <p class="features-sub">Every design decision starts with one question: does this reduce friction or add it?</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🔗</div>
+          <div class="feature-title">The Chain Never Breaks</div>
+          <p class="feature-desc">A missed day adds a softer neutral link — the chain just keeps growing. Never red, never zero, never a failure state. Progress is cumulative, always.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧠</div>
+          <div class="feature-title">AI That Learns You</div>
+          <p class="feature-desc">Apple Intelligence runs entirely on your device. By week two, Anchor knows which days are harder, which routines stick, and what kind of day you're having — before you say anything.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👆</div>
+          <div class="feature-title">Swipe to Complete</div>
+          <p class="feature-desc">Swipe the whole card to check off a routine — no hunting for a small button. Designed for variable attention and motor control. One satisfying motion, done.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌡️</div>
+          <div class="feature-title">Daily Capacity Check-in</div>
+          <p class="feature-desc">Good day, okay day, or heavy day — tell Anchor once and it adjusts everything. Hard scenarios are bypassed. Encouragement matches your energy, not a template.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✉️</div>
+          <div class="feature-title">Weekly Reflection Letter</div>
+          <p class="feature-desc">Every week, a short personal letter reads your actual week back to you — with kindness. Not a stats report. A voice that stayed here while you were gone.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔕</div>
+          <div class="feature-title">Gentle Reminders Only</div>
+          <p class="feature-desc">Local notifications, scheduled by you, controlled by you. No marketing pings, no streaks-at-risk pressure, no anxiety-inducing alerts. You're in charge.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY -->
+  <section class="privacy-section" id="privacy">
+    <h2>Your data lives on your phone.<br>Full stop.</h2>
+    <p>No account. No server. No analytics. Everything Anchor knows about you stays on your device — and disappears when you delete the app. This is not a policy full of exceptions. It's how the app works.</p>
+    <div class="privacy-pillars">
+      <div class="pillar">
+        <div class="pillar-icon">📴</div>
+        <div class="pillar-title">Fully Offline</div>
+        <p class="pillar-desc">Works with no internet connection. Always.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🚫</div>
+        <div class="pillar-title">No Account</div>
+        <p class="pillar-desc">Nothing to sign up for. Nothing to deactivate.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🧠</div>
+        <div class="pillar-title">On-Device AI</div>
+        <p class="pillar-desc">Apple Intelligence runs locally. Your data never reaches any AI provider.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">📊</div>
+        <div class="pillar-title">No Analytics</div>
+        <p class="pillar-desc">No trackers, no SDKs, no user profiling. Zero.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing-section" id="pricing">
+    <div class="features-label" style="color:var(--teal); font-size:12px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; margin-bottom:10px;">Pricing</div>
+    <h2 class="pricing-title">Start free. Upgrade when it's earning it.</h2>
+    <p class="pricing-sub">The chain and check-offs are always free. Pro unlocks AI personalization that gets better every week.</p>
+    <div class="pricing-cards">
+
+      <div class="pricing-card">
+        <div class="pricing-name">Free</div>
+        <div class="pricing-price">$0</div>
+        <div class="pricing-period">forever</div>
+        <ul class="pricing-features">
+          <li>Up to 3 routines</li>
+          <li>Full chain tracker</li>
+          <li>Daily check-offs</li>
+          <li>Warm companion messages</li>
+          <li>Local reminders</li>
+        </ul>
+        <a href="#download" class="pricing-action">Get Started Free</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-badge">⭐ Most Popular</div>
+        <div class="pricing-name">Pro Lifetime</div>
+        <div class="pricing-price">$24.99</div>
+        <div class="pricing-period">one-time purchase</div>
+        <ul class="pricing-features">
+          <li>Unlimited routines</li>
+          <li>AI companion that learns you</li>
+          <li>Weekly reflection letters</li>
+          <li>Pattern insights & memory</li>
+          <li>Tomorrow preview</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#download" class="pricing-action">Get Pro — $24.99</a>
+      </div>
+
+    </div>
+    <p style="margin-top:24px; font-size:13px; color:var(--muted);">Also available monthly at $2.99/mo · Cancel anytime in the App Store</p>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-section">
+    <h2>Your chain starts today.</h2>
+    <p>Download free. Add one routine. Check it off. That's all it takes to start something that keeps going.</p>
+    <a href="#" class="appstore-btn" style="display:inline-flex; margin:0 auto;">
+      <span class="appstore-btn-icon">🍎</span>
+      <span class="appstore-btn-text">
+        <span class="appstore-btn-sub">Download on the</span>
+        <span class="appstore-btn-main">App Store</span>
+      </span>
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 WorkStream Apps LLC · Anchor: ADHD Companion</p>
+    <div>
+      <a href="/">WorkStream Apps</a>
+      <a href="/anchor/privacy">Privacy Policy</a>
+      <a href="/anchor/terms">Terms of Use</a>
+      <a href="mailto:support@workstreamapps.com">Support</a>
+    </div>
+  </footer>
+
+</body>
+</html>

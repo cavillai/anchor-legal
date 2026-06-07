@@ -1,9 +1,12 @@
 # Cloudflare Pages redirects
 
-# App URLs (hardcoded in LegalScreen.tsx) → full content pages
+# App legal URLs (hardcoded in LegalScreen.tsx)
 /anchor/privacy   /anchor/privacy/index.html   200
 /anchor/terms     /anchor/terms/index.html     200
 
-# Flat URL aliases → same pages (in case linked from anywhere)
+# Anchor promo page
+/anchor           /anchor/index.html           200
+
+# Flat URL aliases
 /privacy          /anchor/privacy/index.html   200
 /terms            /anchor/terms/index.html     200
