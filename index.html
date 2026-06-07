@@ -327,6 +327,70 @@
     }
     .social-link:hover { background: rgba(255,255,255,0.22); }
 
+    /* ── EMAIL POPUP ── */
+    .email-popup-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(4px);
+      align-items: center; justify-content: center;
+    }
+    .email-popup-overlay.open { display: flex; }
+    .email-popup {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px 28px;
+      max-width: 380px; width: 90%;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+      text-align: center;
+      animation: popIn 0.2s ease;
+    }
+    @keyframes popIn {
+      from { transform: scale(0.92); opacity: 0; }
+      to   { transform: scale(1);    opacity: 1; }
+    }
+    .email-popup-icon { font-size: 36px; margin-bottom: 12px; }
+    .email-popup h3 {
+      font-size: 18px; font-weight: 700;
+      color: var(--text); margin-bottom: 6px;
+    }
+    .email-popup p {
+      font-size: 14px; color: var(--muted); margin-bottom: 20px;
+    }
+    .email-copy-row {
+      display: flex; align-items: center;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .email-copy-text {
+      flex: 1;
+      padding: 12px 14px;
+      font-size: 14px; font-weight: 600;
+      color: var(--text);
+      text-align: left;
+      user-select: all;
+    }
+    .email-copy-btn {
+      padding: 12px 16px;
+      background: var(--teal); color: #fff;
+      border: none; cursor: pointer;
+      font-size: 13px; font-weight: 700;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .email-copy-btn:hover { background: #155f6d; }
+    .email-copy-btn.copied { background: var(--green); }
+    .email-popup-close {
+      background: none; border: none;
+      font-size: 14px; color: var(--muted);
+      cursor: pointer; padding: 4px 8px;
+      text-decoration: underline;
+    }
+    .email-popup-close:hover { color: var(--text); }
+
     /* ── FOOTER ── */
     footer {
       background: var(--text);
@@ -478,7 +542,7 @@
     <p>Builder, consultant, and app developer based in Florida. I build tools that make daily life less complicated for real people — including myself.</p>
     <div class="social-links">
       <a href="https://linktr.ee/davidcavill" target="_blank" rel="noopener" class="social-link">🌿 Linktree</a>
-      <a href="mailto:david@workstreamapps.com" class="social-link">✉️ Email</a>
+      <button onclick="document.getElementById('emailPopup').classList.add('open')" class="social-link" style="border:none;cursor:pointer;">✉️ Email</button>
       <a href="https://www.runfreeapps.com" target="_blank" rel="noopener" class="social-link">🏃 RunFreeApps</a>
     </div>
   </div>
@@ -492,6 +556,34 @@
       <a href="mailto:david@workstreamapps.com">Contact</a>
     </div>
   </footer>
+
+  <!-- EMAIL POPUP -->
+  <div class="email-popup-overlay" id="emailPopup" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="email-popup">
+      <div class="email-popup-icon">✉️</div>
+      <h3>Get in Touch</h3>
+      <p>Copy the email address below and reach out any time.</p>
+      <div class="email-copy-row">
+        <span class="email-copy-text">david@workstreamapps.com</span>
+        <button class="email-copy-btn" id="copyBtn" onclick="copyEmail()">Copy</button>
+      </div>
+      <button class="email-popup-close" onclick="document.getElementById('emailPopup').classList.remove('open')">Close</button>
+    </div>
+  </div>
+
+  <script>
+    function copyEmail() {
+      navigator.clipboard.writeText('david@workstreamapps.com').then(function() {
+        var btn = document.getElementById('copyBtn');
+        btn.textContent = 'Copied ✓';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
 
 </body>
 </html>
