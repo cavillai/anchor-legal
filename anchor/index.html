@@ -463,6 +463,103 @@
     .pillar-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
     .pillar-desc { font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.5; }
 
+    /* ── PRO CALLOUT ── */
+    .pro-callout-section {
+      padding: 100px 24px;
+      background: var(--bg);
+      text-align: center;
+    }
+    .pro-callout-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .pro-callout-line1 {
+      font-size: clamp(18px, 3vw, 22px);
+      font-weight: 400;
+      color: var(--muted);
+      margin-bottom: 6px;
+      letter-spacing: -0.2px;
+    }
+    .pro-callout-line2 {
+      font-size: clamp(36px, 7vw, 58px);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .pro-callout-line2 em {
+      font-style: normal;
+      color: var(--teal);
+    }
+    .pro-callout-desc {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto 44px;
+    }
+    .pro-memory-card {
+      background: var(--deep);
+      border-radius: 20px;
+      padding: 32px 36px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+    .pro-memory-card::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(27,122,138,0.3) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .pro-memory-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .pro-memory-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+    .pro-memory-from {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+    }
+    .pro-memory-badge {
+      background: var(--teal);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+    }
+    .pro-memory-quote {
+      font-size: 17px;
+      color: #fff;
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+    .pro-memory-caption {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 14px;
+      line-height: 1.5;
+    }
+    @media (max-width: 600px) {
+      .pro-memory-card { padding: 24px 22px; }
+      .pro-memory-quote { font-size: 15px; }
+    }
+
     /* ── PRICING ── */
     .pricing-section { padding: 100px 24px; background: var(--card); text-align: center; }
     .pricing-title { font-size: clamp(26px, 4vw, 38px); font-weight: 800; color: var(--text); letter-spacing: -0.5px; margin-bottom: 12px; }
@@ -567,6 +664,7 @@
     <div class="nav-right">
       <a href="#features" class="nav-link">Features</a>
       <a href="#privacy" class="nav-link">Privacy</a>
+      <a href="#pro" class="nav-link">Pro</a>
       <a href="#pricing" class="nav-link">Pricing</a>
       <a href="#download" class="nav-cta">Download</a>
     </div>
@@ -884,6 +982,29 @@
         </div>
         <div class="pillar-title">No Analytics</div>
         <p class="pillar-desc">No trackers, no SDKs, no user profiling. Zero.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRO CALLOUT — core differentiator -->
+  <section class="pro-callout-section" id="pro">
+    <div class="pro-callout-inner">
+      <p class="pro-callout-line1">The free companion knows ADHD.</p>
+      <p class="pro-callout-line2">Pro knows <em>your</em> ADHD.</p>
+      <p class="pro-callout-desc">Your specific routines. Your hard days. Your patterns over weeks and months. Pro remembers — and after a few weeks, it sounds like someone who's been paying attention the whole time.</p>
+
+      <div class="pro-memory-card">
+        <div class="pro-memory-header">
+          <div class="pro-memory-dot"></div>
+          <span class="pro-memory-from">After a month with Pro</span>
+          <span class="pro-memory-badge">Knows your patterns</span>
+        </div>
+        <p class="pro-memory-quote">
+          "Your morning meds have been going six days in a row — and both days you were away, you were traveling. That's not slipping, that's life moving. Tuesdays have looked harder for you three weeks running. That's just data, not a verdict. You're still anchored."
+        </p>
+        <p class="pro-memory-caption">
+          This is what memory sounds like. It noticed the travel. It noticed Tuesday. That's not a template — that's your actual week, read back with care.
+        </p>
       </div>
     </div>
   </section>
