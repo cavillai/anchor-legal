@@ -218,19 +218,93 @@
       display: flex; align-items: center; gap: 6px;
       background: #fff; border-radius: 10px; padding: 7px 10px;
       box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), background 0.2s;
     }
-    .sim-check { width: 14px; height: 14px; border-radius: 50%; background: #7FB069; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-    .sim-check-empty { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #B8C0CC; flex-shrink: 0; }
+    .sim-habit-row.swiping {
+      transform: translateX(18px);
+      background: rgba(127,176,105,0.12);
+    }
+    .sim-habit-row.done-row {
+      transform: translateX(0);
+      background: rgba(127,176,105,0.08);
+    }
+    /* Swipe arrow indicator */
+    .sim-swipe-arrow {
+      position: absolute; right: 8px;
+      font-size: 6px; color: #7FB069; font-weight: 700;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .sim-habit-row.swiping .sim-swipe-arrow { opacity: 1; }
+    .sim-check {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #7FB069; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .sim-check-empty {
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 2px solid #B8C0CC; flex-shrink: 0;
+      transition: background 0.25s, border-color 0.25s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .sim-check-empty.filling {
+      background: #7FB069;
+      border-color: #7FB069;
+      transform: scale(1.25);
+    }
+    .sim-check-empty.filled {
+      background: #7FB069;
+      border-color: #7FB069;
+      transform: scale(1);
+    }
+    /* Checkmark inside the filled circle */
+    .sim-check-empty::after {
+      content: '';
+      display: block;
+      width: 5px; height: 3px;
+      border-left: 1.5px solid #fff;
+      border-bottom: 1.5px solid #fff;
+      transform: rotate(-45deg) translate(1px, -1px);
+      opacity: 0;
+      transition: opacity 0.15s 0.1s;
+    }
+    .sim-check-empty.filled::after { opacity: 1; }
     .sim-check-inner { width: 6px; height: 4px; border-left: 1.5px solid #fff; border-bottom: 1.5px solid #fff; transform: rotate(-45deg) translateY(-1px); }
     .sim-habit-text { font-size: 7px; font-weight: 600; color: #2C3333; }
+
+    /* Chain screen */
     .sim-chain-row {
       display: flex; gap: 3px; align-items: center;
       background: #fff; border-radius: 10px; padding: 8px 10px;
       box-shadow: 0 1px 4px rgba(0,0,0,0.06);
     }
-    .sim-link { width: 14px; height: 8px; border-radius: 4px; background: #1B7A8A; opacity: 0.7; }
+    .sim-link { width: 14px; height: 8px; border-radius: 4px; background: #1B7A8A; opacity: 0.7; flex-shrink: 0; }
     .sim-link.done { opacity: 1; }
-    .sim-link.soft { background: #B8C0CC; }
+    .sim-link.soft { background: #B8C0CC; opacity: 1; }
+    .sim-link.new-link {
+      opacity: 0;
+      transform: scale(0);
+      transition: opacity 0.3s, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .sim-link.new-link.appearing {
+      opacity: 1;
+      transform: scale(1);
+    }
+    /* Chain count flip */
+    .sim-count-wrap {
+      display: inline-block;
+      overflow: hidden;
+      position: relative;
+    }
+    .sim-count-old, .sim-count-new {
+      display: block;
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.35s;
+    }
+    .sim-count-old { transform: translateY(0); opacity: 1; }
+    .sim-count-old.flip-out { transform: translateY(-100%); opacity: 0; }
+    .sim-count-new { position: absolute; top: 0; left: 0; transform: translateY(100%); opacity: 0; }
+    .sim-count-new.flip-in { transform: translateY(0); opacity: 1; }
 
     .screen-chain {
       background: linear-gradient(180deg, #C6EBE5 0%, #F7F9F8 30%);
@@ -239,6 +313,7 @@
       display: flex; flex-direction: column; gap: 8px;
     }
 
+    /* Companion screen */
     .screen-companion {
       background: linear-gradient(180deg, #EEE8FF 0%, #F7F9F8 30%);
       flex: 1;
@@ -255,6 +330,38 @@
       background: #fff; border-radius: 10px; padding: 8px 10px;
       box-shadow: 0 1px 4px rgba(0,0,0,0.06);
       border-left: 3px solid #1B7A8A;
+      min-height: 40px;
+      position: relative;
+    }
+    /* Thinking dots */
+    .sim-thinking {
+      display: flex; gap: 3px; align-items: center;
+      padding: 4px 0;
+      transition: opacity 0.2s;
+    }
+    .sim-thinking.hidden { opacity: 0; pointer-events: none; position: absolute; }
+    .sim-dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: #B8C0CC;
+    }
+    @keyframes dotBounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30%            { transform: translateY(-3px); opacity: 1; }
+    }
+    .sim-dot:nth-child(1) { animation: dotBounce 1.1s 0s infinite; }
+    .sim-dot:nth-child(2) { animation: dotBounce 1.1s 0.18s infinite; }
+    .sim-dot:nth-child(3) { animation: dotBounce 1.1s 0.36s infinite; }
+    /* Message lines */
+    .sim-msg-lines { display: flex; flex-direction: column; gap: 2px; }
+    .sim-msg-line {
+      font-size: 6px; color: #2C3333; line-height: 1.6;
+      opacity: 0;
+      transform: translateY(3px);
+      transition: opacity 0.4s, transform 0.4s;
+    }
+    .sim-msg-line.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     .sim-message p { font-size: 6px; color: #2C3333; line-height: 1.6; }
 
@@ -528,7 +635,7 @@
             <div class="sim-greeting">Good morning · Tuesday</div>
             <div class="sim-card">
               <div class="sim-card-title">Morning</div>
-              <div class="sim-card-sub">2 of 3 done</div>
+              <div class="sim-card-sub" id="today-count">2 of 3 done</div>
             </div>
             <div class="sim-habit-row">
               <div class="sim-check"><div class="sim-check-inner"></div></div>
@@ -538,9 +645,10 @@
               <div class="sim-check"><div class="sim-check-inner"></div></div>
               <div class="sim-habit-text">Glass of water</div>
             </div>
-            <div class="sim-habit-row">
-              <div class="sim-check-empty"></div>
+            <div class="sim-habit-row" id="swipe-row">
+              <div class="sim-check-empty" id="third-check"></div>
               <div class="sim-habit-text">Step outside</div>
+              <div class="sim-swipe-arrow" aria-hidden="true">›</div>
             </div>
           </div>
         </div>
@@ -553,10 +661,15 @@
             <div class="sim-header">Your Chain</div>
             <div class="sim-greeting">Progress that never breaks</div>
             <div class="sim-card">
-              <div class="sim-card-title">14-day run</div>
-              <div class="sim-card-sub">Best: 14 · This week: 6/7</div>
+              <div class="sim-card-title" id="chain-count-title">
+                <span class="sim-count-wrap">
+                  <span class="sim-count-old" id="chain-count-old">14</span>
+                  <span class="sim-count-new" id="chain-count-new">15</span>
+                </span>-day run
+              </div>
+              <div class="sim-card-sub" id="chain-best">Best: 14 · This week: 6/7</div>
             </div>
-            <div class="sim-chain-row">
+            <div class="sim-chain-row" id="chain-links-row">
               <div class="sim-link done"></div>
               <div class="sim-link done"></div>
               <div class="sim-link done"></div>
@@ -567,6 +680,7 @@
               <div class="sim-link done"></div>
               <div class="sim-link done"></div>
               <div class="sim-link done"></div>
+              <div class="sim-link new-link" id="new-chain-link"></div>
             </div>
             <div class="sim-card">
               <div class="sim-card-title">Morning meds</div>
@@ -586,8 +700,18 @@
           <div class="screen-companion">
             <div class="sim-header">Anchor</div>
             <div class="sim-ai-badge">On-device AI</div>
-            <div class="sim-message">
-              <p>Tuesdays have been your most consistent day this month. That's a real pattern — and you built it.</p>
+            <div class="sim-message" id="companion-msg-card">
+              <div class="sim-thinking" id="sim-thinking">
+                <div class="sim-dot"></div>
+                <div class="sim-dot"></div>
+                <div class="sim-dot"></div>
+              </div>
+              <div class="sim-msg-lines" id="sim-msg-lines" style="display:none;">
+                <p class="sim-msg-line" id="msg-line-1">Tuesdays are your most</p>
+                <p class="sim-msg-line" id="msg-line-2">consistent day this month.</p>
+                <p class="sim-msg-line" id="msg-line-3">That's a real pattern —</p>
+                <p class="sim-msg-line" id="msg-line-4">and you built it.</p>
+              </div>
             </div>
             <div class="sim-card">
               <div class="sim-card-title">How's your day?</div>
@@ -852,6 +976,130 @@
       </span>
     </a>
   </section>
+
+  <script>
+  // ─────────────────────────────────────────────
+  // TODAY SCREEN — swipe-to-complete loop (7s)
+  // ─────────────────────────────────────────────
+  (function() {
+    var row     = document.getElementById('swipe-row');
+    var check   = document.getElementById('third-check');
+    var counter = document.getElementById('today-count');
+    var LOOP    = 7000;
+
+    function todayLoop() {
+      // Phase 1 (1.2s): swipe hint
+      setTimeout(function() {
+        row.classList.add('swiping');
+      }, 1200);
+
+      // Phase 2 (2.0s): snap back + circle fills
+      setTimeout(function() {
+        row.classList.remove('swiping');
+        row.classList.add('done-row');
+        check.classList.add('filling');
+        setTimeout(function() {
+          check.classList.add('filled');
+        }, 200);
+        counter.textContent = '3 of 3 done';
+      }, 2000);
+
+      // Phase 3 (5.5s): reset
+      setTimeout(function() {
+        row.classList.remove('done-row');
+        check.classList.remove('filling', 'filled');
+        counter.textContent = '2 of 3 done';
+      }, 5500);
+    }
+
+    todayLoop();
+    setInterval(todayLoop, LOOP);
+  })();
+
+  // ─────────────────────────────────────────────
+  // CHAIN SCREEN — new link appears + count flips (6s)
+  // ─────────────────────────────────────────────
+  (function() {
+    var newLink  = document.getElementById('new-chain-link');
+    var countOld = document.getElementById('chain-count-old');
+    var countNew = document.getElementById('chain-count-new');
+    var bestSub  = document.getElementById('chain-best');
+    var LOOP     = 6000;
+
+    function chainLoop() {
+      // Phase 1 (1.4s): new link bounces in
+      setTimeout(function() {
+        newLink.classList.add('appearing');
+      }, 1400);
+
+      // Phase 2 (2.2s): counter flips 14 → 15
+      setTimeout(function() {
+        countOld.classList.add('flip-out');
+        countNew.classList.add('flip-in');
+        bestSub.textContent = 'Best: 15 · This week: 7/7';
+      }, 2200);
+
+      // Phase 3 (5.0s): reset
+      setTimeout(function() {
+        newLink.classList.remove('appearing');
+        countOld.classList.remove('flip-out');
+        countNew.classList.remove('flip-in');
+        bestSub.textContent = 'Best: 14 · This week: 6/7';
+      }, 5000);
+    }
+
+    chainLoop();
+    setInterval(chainLoop, LOOP);
+  })();
+
+  // ─────────────────────────────────────────────
+  // COMPANION SCREEN — thinking → message types in (9s)
+  // ─────────────────────────────────────────────
+  (function() {
+    var thinking = document.getElementById('sim-thinking');
+    var lines    = document.getElementById('sim-msg-lines');
+    var msgLines = document.querySelectorAll('.sim-msg-line');
+    var LOOP     = 9000;
+
+    function companionLoop() {
+      // Start with thinking dots showing
+      thinking.classList.remove('hidden');
+      lines.style.display = 'none';
+      msgLines.forEach(function(l) { l.classList.remove('visible'); });
+
+      // Phase 1 (1.6s): hide dots, show lines container
+      setTimeout(function() {
+        thinking.classList.add('hidden');
+        lines.style.display = 'flex';
+      }, 1600);
+
+      // Phase 2: reveal each line staggered
+      [2000, 2500, 3000, 3500].forEach(function(delay, i) {
+        setTimeout(function() {
+          msgLines[i].classList.add('visible');
+        }, delay);
+      });
+
+      // Phase 3 (7.5s): fade out all lines
+      setTimeout(function() {
+        lines.style.opacity = '0';
+        lines.style.transition = 'opacity 0.5s';
+      }, 7500);
+
+      // Phase 4 (8.1s): reset for next loop
+      setTimeout(function() {
+        lines.style.opacity = '1';
+        lines.style.transition = '';
+        lines.style.display = 'none';
+        msgLines.forEach(function(l) { l.classList.remove('visible'); });
+        thinking.classList.remove('hidden');
+      }, 8100);
+    }
+
+    companionLoop();
+    setInterval(companionLoop, LOOP);
+  })();
+  </script>
 
   <!-- FOOTER -->
   <footer>
