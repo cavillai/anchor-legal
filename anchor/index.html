@@ -17,6 +17,7 @@
 
     :root {
       --teal:   #1B7A8A;
+      --teal-dark: #155f6d;
       --deep:   #2D3561;
       --accent: #F4A261;
       --green:  #7FB069;
@@ -40,9 +41,9 @@
     /* ── NAV ── */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(247,249,248,0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(247,249,248,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
       padding: 0 32px;
       height: 56px;
@@ -51,10 +52,10 @@
       justify-content: space-between;
     }
     .nav-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
-    .nav-brand-icon { font-size: 18px; }
+    .nav-brand-icon { width: 28px; height: 28px; color: var(--teal); flex-shrink: 0; }
     .nav-brand-name { font-size: 15px; font-weight: 700; color: var(--teal); }
     .nav-right { display: flex; align-items: center; gap: 16px; }
-    .nav-link { font-size: 14px; color: var(--muted); text-decoration: none; font-weight: 500; }
+    .nav-link { font-size: 14px; color: var(--muted); text-decoration: none; font-weight: 500; transition: color 0.15s; }
     .nav-link:hover { color: var(--teal); }
     .nav-cta {
       background: var(--teal); color: #fff;
@@ -63,7 +64,7 @@
       text-decoration: none;
       transition: background 0.15s;
     }
-    .nav-cta:hover { background: #155f6d; }
+    .nav-cta:hover { background: var(--teal-dark); }
 
     /* ── HERO ── */
     .hero {
@@ -85,9 +86,10 @@
       border-radius: 26px;
       background: linear-gradient(135deg, #1B7A8A, #2D3561);
       display: flex; align-items: center; justify-content: center;
-      font-size: 56px;
       box-shadow: 0 20px 60px rgba(27,122,138,0.3), 0 4px 16px rgba(0,0,0,0.1);
     }
+    .app-icon-wrap svg { width: 60px; height: 60px; }
+
     .hero-eyebrow {
       font-size: 12px; font-weight: 700; letter-spacing: 1.4px;
       text-transform: uppercase; color: var(--teal);
@@ -105,14 +107,14 @@
     .hero-sub {
       font-size: 19px;
       color: var(--muted);
-      max-width: 520px;
+      max-width: 480px;
       margin: 0 auto 36px;
       line-height: 1.65;
     }
     .hero-actions {
       display: flex; gap: 12px;
       justify-content: center; flex-wrap: wrap;
-      margin-bottom: 52px;
+      margin-bottom: 48px;
     }
     .appstore-btn {
       display: inline-flex; align-items: center; gap: 10px;
@@ -122,12 +124,12 @@
       transition: transform 0.15s, box-shadow 0.15s;
     }
     .appstore-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-    .appstore-btn-icon { font-size: 26px; line-height: 1; }
+    .appstore-btn-icon { width: 26px; height: 26px; flex-shrink: 0; }
     .appstore-btn-text { text-align: left; }
     .appstore-btn-sub { font-size: 10px; color: rgba(255,255,255,0.7); display: block; line-height: 1; margin-bottom: 2px; }
     .appstore-btn-main { font-size: 17px; font-weight: 700; display: block; line-height: 1; }
     .hero-link {
-      display: inline-block;
+      display: inline-flex; align-items: center;
       padding: 13px 24px;
       border: 1.5px solid var(--border);
       border-radius: 14px;
@@ -140,18 +142,19 @@
     }
     .hero-link:hover { background: #fff; }
 
-    /* Hero privacy badge */
+    /* Hero privacy badges */
     .privacy-badges {
       display: flex; gap: 10px;
       justify-content: center; flex-wrap: wrap;
     }
     .badge {
-      display: inline-flex; align-items: center; gap: 5px;
-      background: rgba(255,255,255,0.7);
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.75);
       border: 1px solid var(--border);
-      padding: 6px 12px; border-radius: 20px;
+      padding: 7px 13px; border-radius: 20px;
       font-size: 12px; font-weight: 600; color: var(--muted);
     }
+    .badge svg { width: 14px; height: 14px; color: var(--teal); flex-shrink: 0; }
 
     /* ── SCREENSHOT ZONE ── */
     .screens-section {
@@ -172,7 +175,6 @@
       max-width: 900px;
       margin: 0 auto;
     }
-    /* Phone mockup frames — placeholder until real screenshots available */
     .phone-frame {
       width: 200px;
       background: #1A1A1A;
@@ -219,7 +221,7 @@
     }
     .sim-check { width: 14px; height: 14px; border-radius: 50%; background: #7FB069; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
     .sim-check-empty { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #B8C0CC; flex-shrink: 0; }
-    .sim-check::after { content: '✓'; font-size: 7px; color: #fff; font-weight: 800; }
+    .sim-check-inner { width: 6px; height: 4px; border-left: 1.5px solid #fff; border-bottom: 1.5px solid #fff; transform: rotate(-45deg) translateY(-1px); }
     .sim-habit-text { font-size: 7px; font-weight: 600; color: #2C3333; }
     .sim-chain-row {
       display: flex; gap: 3px; align-items: center;
@@ -275,10 +277,50 @@
       padding: 28px;
       border: 1px solid var(--border);
       box-shadow: 0 2px 12px rgba(44,51,51,0.05);
+      transition: box-shadow 0.2s, transform 0.2s;
     }
-    .feature-icon { font-size: 32px; margin-bottom: 14px; }
+    .feature-card:hover { box-shadow: 0 8px 32px rgba(44,51,51,0.1); transform: translateY(-2px); }
+    .feature-icon {
+      width: 48px; height: 48px;
+      background: rgba(27,122,138,0.08);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .feature-icon svg { width: 24px; height: 24px; color: var(--teal); }
     .feature-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
     .feature-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+    /* ── TRIGGER SECTION (full-width callout) ── */
+    .trigger-callout {
+      background: linear-gradient(135deg, rgba(27,122,138,0.06) 0%, rgba(45,53,97,0.06) 100%);
+      border: 1px solid rgba(27,122,138,0.15);
+      border-radius: 20px;
+      padding: 40px 36px;
+      display: flex; align-items: center; gap: 32px;
+      max-width: 1100px; margin: 0 auto 0;
+      flex-wrap: wrap;
+    }
+    .trigger-callout-icon {
+      width: 64px; height: 64px; flex-shrink: 0;
+      background: rgba(27,122,138,0.1);
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .trigger-callout-icon svg { width: 32px; height: 32px; color: var(--teal); }
+    .trigger-callout-body { flex: 1; min-width: 200px; }
+    .trigger-callout-title { font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 8px; letter-spacing: -0.3px; }
+    .trigger-callout-desc { font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 560px; }
+    .trigger-examples {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px;
+    }
+    .trigger-chip {
+      background: rgba(27,122,138,0.1);
+      color: var(--teal);
+      font-size: 13px; font-weight: 600;
+      padding: 5px 12px; border-radius: 20px;
+      border: 1px solid rgba(27,122,138,0.2);
+    }
 
     /* ── PRIVACY SECTION ── */
     .privacy-section {
@@ -300,8 +342,17 @@
       padding: 24px 20px;
       flex: 1; min-width: 160px; max-width: 200px;
       text-align: center;
+      transition: background 0.2s;
     }
-    .pillar-icon { font-size: 28px; margin-bottom: 10px; }
+    .pillar:hover { background: rgba(255,255,255,0.16); }
+    .pillar-icon {
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 12px;
+    }
+    .pillar-icon svg { width: 22px; height: 22px; color: #fff; }
     .pillar-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
     .pillar-desc { font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.5; }
 
@@ -342,10 +393,12 @@
     .pricing-period { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
     .pricing-card.featured .pricing-period { color: rgba(255,255,255,0.65); }
     .pricing-features { list-style: none; margin-bottom: 28px; display: flex; flex-direction: column; gap: 10px; }
-    .pricing-features li { font-size: 14px; color: var(--text); display: flex; align-items: center; gap: 8px; }
+    .pricing-features li {
+      font-size: 14px; color: var(--text);
+      display: flex; align-items: center; gap: 8px;
+    }
     .pricing-card.featured .pricing-features li { color: rgba(255,255,255,0.9); }
-    .pricing-features li::before { content: '✓'; font-weight: 800; color: var(--green); font-size: 13px; flex-shrink: 0; }
-    .pricing-card.featured .pricing-features li::before { color: #A8F0C0; }
+    .pricing-check { width: 16px; height: 16px; flex-shrink: 0; }
     .pricing-action {
       display: block; text-align: center;
       padding: 13px; border-radius: 14px;
@@ -354,11 +407,11 @@
       background: var(--teal); color: #fff;
       transition: background 0.15s;
     }
-    .pricing-action:hover { background: #155f6d; }
+    .pricing-action:hover { background: var(--teal-dark); }
     .pricing-card.featured .pricing-action { background: #fff; color: var(--teal); }
     .pricing-card.featured .pricing-action:hover { background: rgba(255,255,255,0.9); }
 
-    /* ── CTA ── */
+    /* ── FINAL CTA ── */
     .cta-section {
       padding: 100px 24px;
       text-align: center;
@@ -374,7 +427,7 @@
       text-align: center;
     }
     footer p { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 10px; }
-    footer a { color: rgba(255,255,255,0.55); text-decoration: none; margin: 0 10px; font-size: 13px; }
+    footer a { color: rgba(255,255,255,0.55); text-decoration: none; margin: 0 10px; font-size: 13px; transition: color 0.15s; }
     footer a:hover { color: #fff; }
 
     /* ── RESPONSIVE ── */
@@ -386,6 +439,8 @@
       .pricing-cards { flex-direction: column; align-items: center; }
       .privacy-pillars { gap: 12px; }
       .pillar { min-width: 140px; }
+      .trigger-callout { padding: 28px 20px; gap: 20px; }
+      .trigger-callout-icon { width: 52px; height: 52px; }
     }
   </style>
 </head>
@@ -394,7 +449,12 @@
   <!-- NAV -->
   <nav>
     <a href="/" class="nav-brand">
-      <span class="nav-brand-icon">⚓</span>
+      <svg class="nav-brand-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="14" cy="7" r="3"/>
+        <line x1="14" y1="10" x2="14" y2="24"/>
+        <line x1="7" y1="16" x2="21" y2="16"/>
+        <path d="M7 16 C7 22 11 25 14 26 C17 25 21 22 21 16"/>
+      </svg>
       <span class="nav-brand-name">Anchor</span>
     </a>
     <div class="nav-right">
@@ -407,15 +467,24 @@
 
   <!-- HERO -->
   <section class="hero" id="download">
-    <div class="app-icon-wrap">⚓</div>
+    <div class="app-icon-wrap" aria-hidden="true">
+      <svg viewBox="0 0 60 60" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="30" cy="13" r="5"/>
+        <line x1="30" y1="18" x2="30" y2="50"/>
+        <line x1="15" y1="28" x2="45" y2="28"/>
+        <path d="M15 28 C15 43 23 49 30 51 C37 49 45 43 45 28"/>
+      </svg>
+    </div>
     <div class="hero-eyebrow">Anchor: ADHD Companion · iOS App</div>
     <h1>Routines that stick.<br><span>A chain that never breaks.</span></h1>
     <p class="hero-sub">
-      A private, on-device AI companion built for ADHD daily life. Check off routines, grow your chain, and let Anchor learn what works for you — all without an account or internet connection.
+      Private, on-device AI for ADHD daily life. No account. No cloud. Just a chain that keeps growing — even on hard days.
     </p>
     <div class="hero-actions">
-      <a href="#" class="appstore-btn">
-        <span class="appstore-btn-icon">🍎</span>
+      <a href="https://apps.apple.com" class="appstore-btn" aria-label="Download on the App Store">
+        <svg class="appstore-btn-icon" viewBox="0 0 26 26" fill="white" aria-hidden="true">
+          <path d="M18.07 13.57c-.03-3.17 2.59-4.7 2.71-4.77-1.48-2.16-3.78-2.46-4.59-2.49-1.95-.2-3.82 1.16-4.81 1.16-.99 0-2.52-1.13-4.15-1.1-2.13.03-4.1 1.24-5.2 3.14-2.23 3.86-.57 9.56 1.6 12.69 1.06 1.54 2.32 3.26 3.97 3.2 1.6-.07 2.2-1.03 4.13-1.03 1.93 0 2.48 1.03 4.17.99 1.72-.03 2.81-1.56 3.86-3.11.22-.32.41-.66.57-1.01-3.12-1.19-3.23-5.61-.26-7.67zM15.1 4.4c.88-1.06 1.47-2.54 1.31-4.01-1.27.05-2.8.85-3.71 1.91-.81.94-1.53 2.44-1.34 3.88 1.41.11 2.86-.72 3.74-1.78z"/>
+        </svg>
         <span class="appstore-btn-text">
           <span class="appstore-btn-sub">Download on the</span>
           <span class="appstore-btn-main">App Store</span>
@@ -424,18 +493,30 @@
       <a href="#features" class="hero-link">See how it works</a>
     </div>
     <div class="privacy-badges">
-      <span class="badge">🔒 No account required</span>
-      <span class="badge">📴 100% offline</span>
-      <span class="badge">🧠 On-device AI</span>
-      <span class="badge">🆓 Free to start</span>
+      <span class="badge">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="3" y="6" width="8" height="6" rx="1"/><path d="M5 6V4a2 2 0 0 1 4 0v2"/></svg>
+        No account required
+      </span>
+      <span class="badge">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="1" y1="1" x2="13" y2="13"/><path d="M6.5 3.5A5 5 0 0 1 12 7M2.5 5A7 7 0 0 0 2 7"/><path d="M5 7a2 2 0 0 1 4 0"/></svg>
+        100% offline
+      </span>
+      <span class="badge">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="2" y="3" width="10" height="8" rx="1"/><path d="M5 3V2M9 3V2M5 11v1M9 11v1M2 6h1M11 6h1"/></svg>
+        On-device AI
+      </span>
+      <span class="badge">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M7 1L2 3.5v4C2 10.5 4.5 12.8 7 13c2.5-.2 5-2.5 5-5.5v-4L7 1z"/></svg>
+        Free to start
+      </span>
     </div>
   </section>
 
   <!-- SCREENSHOT MOCKUPS -->
   <section class="screens-section">
     <div class="screens-label">The App</div>
-    <h2 class="screens-title">Everything you need. Nothing you don't.</h2>
-    <p class="screens-sub">Three tabs. Today's routines, your growing chain, and an AI companion that learns your patterns over time.</p>
+    <h2 class="screens-title">Three tabs. One question answered each time.</h2>
+    <p class="screens-sub">Where did I leave off? What's next? Am I okay? Anchor answers all three — without you having to look for the answer.</p>
 
     <div class="screens-row">
 
@@ -443,23 +524,23 @@
       <div class="phone-frame">
         <div class="phone-screen">
           <div class="screen-today">
-            <div class="sim-header">⚓ Anchor</div>
+            <div class="sim-header">Anchor</div>
             <div class="sim-greeting">Good morning · Tuesday</div>
             <div class="sim-card">
-              <div class="sim-card-title">🌅 Morning</div>
+              <div class="sim-card-title">Morning</div>
               <div class="sim-card-sub">2 of 3 done</div>
             </div>
             <div class="sim-habit-row">
-              <div class="sim-check"></div>
-              <div class="sim-habit-text">💊 Morning meds</div>
+              <div class="sim-check"><div class="sim-check-inner"></div></div>
+              <div class="sim-habit-text">Morning meds</div>
             </div>
             <div class="sim-habit-row">
-              <div class="sim-check"></div>
-              <div class="sim-habit-text">🥤 Glass of water</div>
+              <div class="sim-check"><div class="sim-check-inner"></div></div>
+              <div class="sim-habit-text">Glass of water</div>
             </div>
             <div class="sim-habit-row">
               <div class="sim-check-empty"></div>
-              <div class="sim-habit-text">🚶 Step outside</div>
+              <div class="sim-habit-text">Step outside</div>
             </div>
           </div>
         </div>
@@ -472,7 +553,7 @@
             <div class="sim-header">Your Chain</div>
             <div class="sim-greeting">Progress that never breaks</div>
             <div class="sim-card">
-              <div class="sim-card-title">14-day run 🔗</div>
+              <div class="sim-card-title">14-day run</div>
               <div class="sim-card-sub">Best: 14 · This week: 6/7</div>
             </div>
             <div class="sim-chain-row">
@@ -488,11 +569,11 @@
               <div class="sim-link done"></div>
             </div>
             <div class="sim-card">
-              <div class="sim-card-title">💊 Morning meds</div>
+              <div class="sim-card-title">Morning meds</div>
               <div class="sim-card-sub">12-day run · Best: 12</div>
             </div>
             <div class="sim-card">
-              <div class="sim-card-title">🚶 Step outside</div>
+              <div class="sim-card-title">Step outside</div>
               <div class="sim-card-sub">7-day run · Best: 9</div>
             </div>
           </div>
@@ -503,17 +584,17 @@
       <div class="phone-frame">
         <div class="phone-screen">
           <div class="screen-companion">
-            <div class="sim-header">⚓ Anchor</div>
-            <div class="sim-ai-badge">✦ On-device AI</div>
+            <div class="sim-header">Anchor</div>
+            <div class="sim-ai-badge">On-device AI</div>
             <div class="sim-message">
-              <p>Tuesdays have been your most consistent day — you've done it every one this month. That's a real pattern.</p>
+              <p>Tuesdays have been your most consistent day this month. That's a real pattern — and you built it.</p>
             </div>
             <div class="sim-card">
               <div class="sim-card-title">How's your day?</div>
               <div class="sim-card-sub">Tap to check in</div>
             </div>
             <div class="sim-card">
-              <div class="sim-card-title">🌙 Tonight</div>
+              <div class="sim-card-title">Tonight</div>
               <div class="sim-card-sub">1 routine · Wind down</div>
             </div>
           </div>
@@ -532,37 +613,104 @@
         <p class="features-sub">Every design decision starts with one question: does this reduce friction or add it?</p>
       </div>
       <div class="features-grid">
+
         <div class="feature-card">
-          <div class="feature-icon">🔗</div>
+          <div class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+            </svg>
+          </div>
           <div class="feature-title">The Chain Never Breaks</div>
-          <p class="feature-desc">A missed day adds a softer neutral link — the chain just keeps growing. Never red, never zero, never a failure state. Progress is cumulative, always.</p>
+          <p class="feature-desc">A missed day adds a softer neutral link — the chain just keeps growing. Never red, never zero, never a failure state. One routine on a hard day counts more than five on an easy one.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">🧠</div>
-          <div class="feature-title">AI That Learns You</div>
-          <p class="feature-desc">Apple Intelligence runs entirely on your device. By week two, Anchor knows which days are harder, which routines stick, and what kind of day you're having — before you say anything.</p>
+          <div class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+              <path d="M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/>
+            </svg>
+          </div>
+          <div class="feature-title">Attach to Moments You Already Have</div>
+          <p class="feature-desc">Pick a trigger — after coffee, before bed, after lunch — and your routine anchors to it. It stops being something to remember and starts just happening. This is why routines actually stick.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">👆</div>
+          <div class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46L5 10"/>
+              <path d="M4 10h8"/>
+              <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5"/>
+              <path d="M15 10h4a2 2 0 0 1 0 4h-1a2 2 0 0 1 0 4H12"/>
+            </svg>
+          </div>
           <div class="feature-title">Swipe to Complete</div>
           <p class="feature-desc">Swipe the whole card to check off a routine — no hunting for a small button. Designed for variable attention and motor control. One satisfying motion, done.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">🌡️</div>
+          <div class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12a9 9 0 1 1-6.22-8.56"/>
+              <path d="M22 4L12 14.01l-3-3"/>
+            </svg>
+          </div>
           <div class="feature-title">Daily Capacity Check-in</div>
           <p class="feature-desc">Good day, okay day, or heavy day — tell Anchor once and it adjusts everything. Hard scenarios are bypassed. Encouragement matches your energy, not a template.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">✉️</div>
+          <div class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
           <div class="feature-title">Weekly Reflection Letter</div>
-          <p class="feature-desc">Every week, a short personal letter reads your actual week back to you — with kindness. Not a stats report. A voice that stayed here while you were gone.</p>
+          <p class="feature-desc">Every week, a short personal letter reads your actual week back to you — with kindness. Not a stats report. A voice that noticed what you kept going, even on the hard days.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">🔕</div>
-          <div class="feature-title">Gentle Reminders Only</div>
-          <p class="feature-desc">Local notifications, scheduled by you, controlled by you. No marketing pings, no streaks-at-risk pressure, no anxiety-inducing alerts. You're in charge.</p>
+          <div class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <path d="M8 21h8M12 17v4"/>
+              <path d="M7 8h.01M12 8h.01M17 8h.01M7 12h.01M12 12h.01M17 12h.01"/>
+            </svg>
+          </div>
+          <div class="feature-title">AI That Learns You</div>
+          <p class="feature-desc">Apple Intelligence runs entirely on your device. By week two, Anchor knows which days are harder, which routines stick, and what kind of day you're having — before you say anything.</p>
+        </div>
+
+      </div>
+
+      <!-- Trigger Anchoring Callout -->
+      <div style="margin-top: 20px;">
+        <div class="trigger-callout">
+          <div class="trigger-callout-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="16" cy="8" r="4"/>
+              <line x1="16" y1="12" x2="16" y2="28"/>
+              <line x1="8" y1="18" x2="24" y2="18"/>
+              <path d="M8 18 C8 25 12 28 16 29 C20 28 24 25 24 18"/>
+            </svg>
+          </div>
+          <div class="trigger-callout-body">
+            <div class="trigger-callout-title">How triggers work: you pick the moment, Anchor attaches to it</div>
+            <p class="trigger-callout-desc">When you add a routine, you choose a trigger — an existing moment in your day. Your routine becomes part of something you already do, not a new thing to remember. Behavioral science calls this habit stacking. We just made it two taps.</p>
+            <div class="trigger-examples">
+              <span class="trigger-chip">After morning coffee</span>
+              <span class="trigger-chip">Before bed</span>
+              <span class="trigger-chip">After lunch</span>
+              <span class="trigger-chip">When I wake up</span>
+              <span class="trigger-chip">After work</span>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -572,22 +720,44 @@
     <p>No account. No server. No analytics. Everything Anchor knows about you stays on your device — and disappears when you delete the app. This is not a policy full of exceptions. It's how the app works.</p>
     <div class="privacy-pillars">
       <div class="pillar">
-        <div class="pillar-icon">📴</div>
+        <div class="pillar-icon" aria-hidden="true">
+          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <line x1="1" y1="1" x2="21" y2="21"/>
+            <path d="M10.5 4.5A7 7 0 0 1 18 9M3 9a9 9 0 0 0-.5 2"/>
+            <path d="M7 9a5 5 0 0 1 8 0"/>
+          </svg>
+        </div>
         <div class="pillar-title">Fully Offline</div>
         <p class="pillar-desc">Works with no internet connection. Always.</p>
       </div>
       <div class="pillar">
-        <div class="pillar-icon">🚫</div>
+        <div class="pillar-icon" aria-hidden="true">
+          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 11c0 2.761-2.239 5-5 5s-5-2.239-5-5 2.239-5 5-5 5 2.239 5 5z"/>
+            <path d="M21 21l-5-5"/>
+            <line x1="3" y1="3" x2="19" y2="19"/>
+          </svg>
+        </div>
         <div class="pillar-title">No Account</div>
         <p class="pillar-desc">Nothing to sign up for. Nothing to deactivate.</p>
       </div>
       <div class="pillar">
-        <div class="pillar-icon">🧠</div>
+        <div class="pillar-icon" aria-hidden="true">
+          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="18" height="14" rx="2"/>
+            <path d="M7 4V2M15 4V2M7 18v2M15 18v2M2 9h2M18 9h2M2 13h2M18 13h2"/>
+          </svg>
+        </div>
         <div class="pillar-title">On-Device AI</div>
         <p class="pillar-desc">Apple Intelligence runs locally. Your data never reaches any AI provider.</p>
       </div>
       <div class="pillar">
-        <div class="pillar-icon">📊</div>
+        <div class="pillar-icon" aria-hidden="true">
+          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 2L3 5.5v5c0 4.5 3.4 8.7 8 9.5 4.6-.8 8-5 8-9.5v-5L11 2z"/>
+            <polyline points="7,11 10,14 15,9"/>
+          </svg>
+        </div>
         <div class="pillar-title">No Analytics</div>
         <p class="pillar-desc">No trackers, no SDKs, no user profiling. Zero.</p>
       </div>
@@ -606,27 +776,60 @@
         <div class="pricing-price">$0</div>
         <div class="pricing-period">forever</div>
         <ul class="pricing-features">
-          <li>Up to 3 routines</li>
-          <li>Full chain tracker</li>
-          <li>Daily check-offs</li>
-          <li>Warm companion messages</li>
-          <li>Local reminders</li>
+          <li>
+            <svg class="pricing-check" viewBox="0 0 16 16" fill="none" stroke="#7FB069" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="3,8 7,12 13,5"/></svg>
+            Up to 3 routines
+          </li>
+          <li>
+            <svg class="pricing-check" viewBox="0 0 16 16" fill="none" stroke="#7FB069" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="3,8 7,12 13,5"/></svg>
+            Full chain tracker
+          </li>
+          <li>
+            <svg class="pricing-check" viewBox="0 0 16 16" fill="none" stroke="#7FB069" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="3,8 7,12 13,5"/></svg>
+            Daily check-offs
+          </li>
+          <li>
+            <svg class="pricing-check" viewBox="0 0 16 16" fill="none" stroke="#7FB069" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="3,8 7,12 13,5"/></svg>
+            Warm companion messages
+          </li>
+          <li>
+            <svg class="pricing-check" viewBox="0 0 16 16" fill="none" stroke="#7FB069" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="3,8 7,12 13,5"/></svg>
+            Trigger anchoring
+          </li>
         </ul>
         <a href="#download" class="pricing-action">Get Started Free</a>
       </div>
 
       <div class="pricing-card featured">
-        <div class="pricing-badge">⭐ Most Popular</div>
+        <div class="pricing-badge">Most Popular</div>
         <div class="pricing-name">Pro Lifetime</div>
         <div class="pricing-price">$24.99</div>
         <div class="pricing-period">one-time purchase</div>
         <ul class="pricing-features">
-          <li>Unlimited routines</li>
-          <li>AI companion that learns you</li>
-          <li>Weekly reflection letters</li>
-          <li>Pattern insights & memory</li>
-          <li>Tomorrow preview</li>
-          <li>Priority support</li>
+          <li>
+            <svg class="pricing-check" viewBox="0 0 16 16" fill="none" stroke="#A8F0C0" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="3,8 7,12 13,5"/></svg>
+            Unlimited routines
+          </li>
+          <li>
+            <svg class="pricing-check" viewBox="0 0 16 16" fill="none" stroke="#A8F0C0" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="3,8 7,12 13,5"/></svg>
+            AI companion that learns you
+          </li>
+          <li>
+            <svg class="pricing-check" viewBox="0 0 16 16" fill="none" stroke="#A8F0C0" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="3,8 7,12 13,5"/></svg>
+            Weekly reflection letters
+          </li>
+          <li>
+            <svg class="pricing-check" viewBox="0 0 16 16" fill="none" stroke="#A8F0C0" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="3,8 7,12 13,5"/></svg>
+            Pattern insights &amp; memory
+          </li>
+          <li>
+            <svg class="pricing-check" viewBox="0 0 16 16" fill="none" stroke="#A8F0C0" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="3,8 7,12 13,5"/></svg>
+            Tomorrow preview
+          </li>
+          <li>
+            <svg class="pricing-check" viewBox="0 0 16 16" fill="none" stroke="#A8F0C0" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="3,8 7,12 13,5"/></svg>
+            Priority support
+          </li>
         </ul>
         <a href="#download" class="pricing-action">Get Pro — $24.99</a>
       </div>
@@ -639,8 +842,10 @@
   <section class="cta-section">
     <h2>Your chain starts today.</h2>
     <p>Download free. Add one routine. Check it off. That's all it takes to start something that keeps going.</p>
-    <a href="#" class="appstore-btn" style="display:inline-flex; margin:0 auto;">
-      <span class="appstore-btn-icon">🍎</span>
+    <a href="https://apps.apple.com" class="appstore-btn" style="display:inline-flex; margin:0 auto;" aria-label="Download on the App Store">
+      <svg class="appstore-btn-icon" viewBox="0 0 26 26" fill="white" aria-hidden="true">
+        <path d="M18.07 13.57c-.03-3.17 2.59-4.7 2.71-4.77-1.48-2.16-3.78-2.46-4.59-2.49-1.95-.2-3.82 1.16-4.81 1.16-.99 0-2.52-1.13-4.15-1.1-2.13.03-4.1 1.24-5.2 3.14-2.23 3.86-.57 9.56 1.6 12.69 1.06 1.54 2.32 3.26 3.97 3.2 1.6-.07 2.2-1.03 4.13-1.03 1.93 0 2.48 1.03 4.17.99 1.72-.03 2.81-1.56 3.86-3.11.22-.32.41-.66.57-1.01-3.12-1.19-3.23-5.61-.26-7.67zM15.1 4.4c.88-1.06 1.47-2.54 1.31-4.01-1.27.05-2.8.85-3.71 1.91-.81.94-1.53 2.44-1.34 3.88 1.41.11 2.86-.72 3.74-1.78z"/>
+      </svg>
       <span class="appstore-btn-text">
         <span class="appstore-btn-sub">Download on the</span>
         <span class="appstore-btn-main">App Store</span>
