@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cowork Consulting & Training — WorkStream Apps LLC</title>
+  <meta name="description" content="We audit your team's workflows, identify where AI can move the needle, and deploy Claude Cowork in a way that actually sticks. Training and hands-on consulting for modern teams." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:    #1B7A8A;
+      --deep:    #2D3561;
+      --accent:  #F4A261;
+      --green:   #7FB069;
+      --bg:      #F7F9F8;
+      --card:    #FFFFFF;
+      --text:    #2C3333;
+      --muted:   #6B7B8D;
+      --border:  #E2E8F0;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(247,249,248,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .nav-brand-icon { font-size: 20px; }
+    .nav-brand-text { font-size: 15px; font-weight: 700; color: var(--teal); letter-spacing: -0.2px; }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { font-size: 14px; color: var(--muted); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--teal); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #1B7A8A 0%, #2D3561 100%);
+      padding: 100px 24px 80px;
+      text-align: center;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.9);
+      font-size: 12px; font-weight: 600; letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 5px 14px; border-radius: 20px; margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 54px);
+      font-weight: 800; color: #fff;
+      line-height: 1.15; letter-spacing: -1px;
+      max-width: 720px; margin: 0 auto 20px;
+    }
+    .hero p {
+      font-size: clamp(16px, 2vw, 19px); color: rgba(255,255,255,0.82);
+      max-width: 600px; margin: 0 auto 36px; line-height: 1.65;
+    }
+    .hero-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block; padding: 14px 28px;
+      background: #fff; color: var(--teal);
+      font-size: 15px; font-weight: 700; border-radius: 32px;
+      text-decoration: none; transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(0,0,0,0.2); }
+    .btn-ghost {
+      display: inline-block; padding: 14px 28px;
+      background: transparent; color: #fff;
+      font-size: 15px; font-weight: 600; border-radius: 32px;
+      text-decoration: none; border: 2px solid rgba(255,255,255,0.5);
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.8); }
+
+    /* ── SECTIONS ── */
+    section { padding: 80px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 12px;
+    }
+    .section-title { font-size: clamp(26px, 4vw, 38px); font-weight: 800; color: var(--text); line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .section-sub { font-size: 17px; color: var(--muted); max-width: 600px; line-height: 1.7; margin-bottom: 48px; }
+
+    /* ── TWO-COLUMN INTRO ── */
+    .intro-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+    }
+    .intro-text h3 { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 14px; }
+    .intro-text p { font-size: 16px; color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
+    .intro-text p:last-child { margin-bottom: 0; }
+    .intro-callout {
+      background: linear-gradient(135deg, #D4E8FF 0%, #BDD5F0 100%);
+      border-radius: 20px; padding: 36px; text-align: center;
+    }
+    .intro-callout-icon { font-size: 48px; margin-bottom: 16px; }
+    .intro-callout h4 { font-size: 20px; font-weight: 800; color: var(--deep); margin-bottom: 10px; }
+    .intro-callout p { font-size: 15px; color: #3B5A7A; line-height: 1.65; }
+
+    /* ── SERVICES ── */
+    .services-bg { background: var(--card); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .service-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px; transition: all 0.2s;
+    }
+    .service-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+    .service-icon { font-size: 32px; margin-bottom: 16px; }
+    .service-badge {
+      display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 12px;
+      margin-bottom: 14px;
+    }
+    .badge-consulting { background: rgba(27,122,138,0.12); color: var(--teal); }
+    .badge-training { background: rgba(45,53,97,0.1); color: var(--deep); }
+    .service-card h3 { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+    .service-card p { font-size: 15px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+    .service-features { list-style: none; }
+    .service-features li {
+      font-size: 14px; color: var(--muted); padding: 5px 0;
+      border-bottom: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-start;
+    }
+    .service-features li:last-child { border-bottom: none; }
+    .service-features li::before { content: "→"; color: var(--teal); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── PROCESS ── */
+    .process-bg { background: var(--bg); }
+    .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; }
+    .process-step {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 32px 24px; position: relative; transition: all 0.2s;
+    }
+    .process-step:first-child { border-radius: 16px 0 0 16px; }
+    .process-step:last-child { border-radius: 0 16px 16px 0; }
+    .process-step:hover { z-index: 1; box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+    .process-step + .process-step { border-left: none; }
+    .step-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--teal); color: #fff;
+      font-size: 14px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .process-step h4 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .process-step p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* ── MATURITY MODEL ── */
+    .maturity-bg { background: linear-gradient(135deg, #1B7A8A 0%, #2D3561 100%); }
+    .maturity-bg .section-label { color: rgba(255,255,255,0.6); }
+    .maturity-bg .section-title { color: #fff; }
+    .maturity-bg .section-sub { color: rgba(255,255,255,0.75); }
+    .maturity-grid { display: flex; flex-direction: column; gap: 12px; max-width: 860px; }
+    .maturity-row {
+      display: grid; grid-template-columns: 80px 1fr;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 12px; overflow: hidden; align-items: stretch;
+    }
+    .maturity-level {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.08); padding: 16px 12px; text-align: center;
+    }
+    .maturity-level-num { font-size: 22px; font-weight: 800; color: #fff; line-height: 1; }
+    .maturity-level-label { font-size: 10px; color: rgba(255,255,255,0.55); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 4px; }
+    .maturity-body { padding: 16px 20px; }
+    .maturity-body h4 { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .maturity-body p { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+    .maturity-body code { font-size: 12px; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); padding: 2px 7px; border-radius: 6px; font-family: monospace; }
+    .maturity-current { border-color: rgba(244,162,97,0.7); background: rgba(244,162,97,0.08); }
+    .maturity-current .maturity-level { background: rgba(244,162,97,0.15); }
+    .maturity-current .maturity-level-num { color: var(--accent); }
+
+    /* ── VALUE PILLARS ── */
+    .pillars-bg { background: var(--card); }
+    .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+    .pillar-card {
+      padding: 28px 24px; border-radius: 16px;
+      border: 1px solid var(--border); background: var(--bg);
+      text-align: center;
+    }
+    .pillar-icon { font-size: 36px; margin-bottom: 14px; }
+    .pillar-card h3 { font-size: 18px; font-weight: 800; color: var(--text); margin-bottom: 10px; }
+    .pillar-card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+    /* ── WHO IT'S FOR ── */
+    .audience-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .audience-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px;
+    }
+    .audience-card h4 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .audience-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .audience-tag {
+      display: inline-block; margin-bottom: 12px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 12px;
+      background: rgba(27,122,138,0.1); color: var(--teal);
+    }
+
+    /* ── QUOTE ── */
+    .quote-section { background: var(--bg); padding: 60px 24px; text-align: center; }
+    .quote-inner { max-width: 700px; margin: 0 auto; }
+    .quote-text {
+      font-size: clamp(18px, 3vw, 24px); font-weight: 600;
+      color: var(--text); line-height: 1.55; margin-bottom: 16px;
+      font-style: italic;
+    }
+    .quote-text em { color: var(--teal); font-style: normal; }
+    .quote-attr { font-size: 13px; color: var(--muted); }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, #2D3561 0%, #1B7A8A 100%);
+      padding: 80px 24px; text-align: center;
+    }
+    .cta-section h2 { font-size: clamp(26px, 4vw, 40px); font-weight: 800; color: #fff; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .cta-section p { font-size: 17px; color: rgba(255,255,255,0.78); max-width: 520px; margin: 0 auto 36px; line-height: 1.65; }
+    .cta-btn {
+      display: inline-block; padding: 16px 36px;
+      background: #fff; color: var(--deep);
+      font-size: 16px; font-weight: 700; border-radius: 32px;
+      text-decoration: none; transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .cta-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(0,0,0,0.28); }
+    .cta-note { margin-top: 14px; font-size: 13px; color: rgba(255,255,255,0.5); }
+
+    /* ── EMAIL POPUP ── */
+    .email-popup-overlay {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.45); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center;
+    }
+    .email-popup-overlay.open { display: flex; }
+    .email-popup {
+      background: #fff; border-radius: 20px; padding: 32px 28px;
+      max-width: 380px; width: 90%;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+      text-align: center; animation: popIn 0.2s ease;
+    }
+    @keyframes popIn { from { transform: scale(0.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .email-popup-icon { font-size: 36px; margin-bottom: 12px; }
+    .email-popup h3 { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .email-popup p { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+    .email-copy-row {
+      display: flex; align-items: center;
+      background: var(--bg); border: 1.5px solid var(--border);
+      border-radius: 12px; overflow: hidden; margin-bottom: 16px;
+    }
+    .email-copy-text { flex: 1; padding: 12px 14px; font-size: 14px; font-weight: 600; color: var(--text); text-align: left; user-select: all; }
+    .email-copy-btn {
+      padding: 12px 16px; background: var(--teal); color: #fff;
+      border: none; cursor: pointer; font-size: 13px; font-weight: 700;
+      transition: background 0.15s; white-space: nowrap;
+    }
+    .email-copy-btn:hover { background: #155f6d; }
+    .email-copy-btn.copied { background: var(--green); }
+    .email-popup-close { background: none; border: none; font-size: 14px; color: var(--muted); cursor: pointer; padding: 4px 8px; text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--text); padding: 40px 24px; text-align: center; }
+    footer p { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; margin: 0 10px; font-size: 13px; }
+    footer a:hover { color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .intro-grid { grid-template-columns: 1fr; }
+      .process-step:first-child { border-radius: 16px 16px 0 0; }
+      .process-step:last-child { border-radius: 0 0 16px 16px; }
+      .process-step + .process-step { border-left: 1px solid var(--border); border-top: none; }
+      .process-steps { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      section { padding: 60px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-brand">
+      <span class="nav-brand-icon">⚡</span>
+      <span class="nav-brand-text">WorkStream Apps LLC</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#apps">Apps</a></li>
+      <li><a href="/consulting" class="active">Consulting</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="#" onclick="event.preventDefault();document.getElementById('emailPopup').classList.add('open')">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">Cowork Consulting &amp; Training</div>
+    <h1>Your Workflows, Upgraded With AI That Actually Works</h1>
+    <p>We audit how your team works, identify where AI moves the needle, and deploy Claude Cowork in a way that sticks — from day-one training to organization-wide transformation.</p>
+    <div class="hero-cta">
+      <a href="#services" class="btn-primary">See What We Do</a>
+      <a href="#" onclick="event.preventDefault();document.getElementById('emailPopup').classList.add('open')" class="btn-ghost">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section>
+    <div class="section-inner">
+      <div class="intro-grid">
+        <div class="intro-text">
+          <div class="section-label">Why This Matters</div>
+          <h3>Most AI rollouts fail because nobody looked at the workflow first.</h3>
+          <p>Teams buy access, sit through a generic demo, and go back to doing things the same way. The tools are there. The time savings aren't.</p>
+          <p>We do this differently. Before any training happens, we map your actual workflows — the repetitive, the bottlenecked, the expertise-dependent — and build a deployment plan around what will deliver real results for your team in the first 30 days.</p>
+          <p>Then we stay involved. Pilot → scale → org-wide adoption. Not a one-day event.</p>
+        </div>
+        <div class="intro-callout">
+          <div class="intro-callout-icon">🤝</div>
+          <h4>Consulting + Training, Together</h4>
+          <p>Workflow analysis before deployment. Hands-on training tied to your tools and real use cases. Follow-up support through pilot and scale phases.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-bg" id="services">
+    <div class="section-inner">
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Two Ways We Work With You</h2>
+      <p class="section-sub">Standalone training or full consulting engagements — built around your tools, your team, and your timeline.</p>
+
+      <div class="services-grid">
+
+        <!-- WORKFLOW CONSULTING -->
+        <div class="service-card">
+          <div class="service-icon">🔍</div>
+          <div class="service-badge badge-consulting">Consulting</div>
+          <h3>Workflow Analysis & AI Deployment Strategy</h3>
+          <p>We assess where your team's time is actually going, identify the highest-value AI use cases, and build a phased deployment plan — with measurable outcomes at every step.</p>
+          <ul class="service-features">
+            <li>Current workflow audit (interviews + process mapping)</li>
+            <li>Use case prioritization by ROI and feasibility</li>
+            <li>Claude Cowork maturity roadmap (Level 0 → 4)</li>
+            <li>Pilot design: who, what, which tools, which connectors</li>
+            <li>Adoption metrics and 30/60/90-day check-ins</li>
+            <li>IT &amp; compliance readiness review</li>
+          </ul>
+        </div>
+
+        <!-- TRAINING -->
+        <div class="service-card">
+          <div class="service-icon">🎓</div>
+          <div class="service-badge badge-training">Training</div>
+          <h3>Customized Claude Cowork Team Training</h3>
+          <p>Full-day, hands-on training built around your specific tool stack, your industry, and your team's actual priorities — not a generic slide deck.</p>
+          <ul class="service-features">
+            <li>Pre-training workflow intake (ops + IT security)</li>
+            <li>Custom training module per client (automated generation)</li>
+            <li>Live demos using your approved connectors</li>
+            <li>Scenarios matched to your team's real use cases</li>
+            <li>Sales, Legal, Finance, Operations, Product, Engineering tracks</li>
+            <li>IT security briefing + compliance walkthrough</li>
+          </ul>
+        </div>
+
+        <!-- ONGOING -->
+        <div class="service-card">
+          <div class="service-icon">📈</div>
+          <div class="service-badge badge-consulting">Ongoing</div>
+          <h3>Pilot Support & Scale Planning</h3>
+          <p>We don't disappear after day one. Pilot-phase support means your champion users get unstuck fast, and scale-phase planning means adoption spreads with structure, not chaos.</p>
+          <ul class="service-features">
+            <li>Weekly check-ins during the pilot phase (Months 1–3)</li>
+            <li>Skill and plugin development for org-wide rollout</li>
+            <li>Champion enablement (top users become internal experts)</li>
+            <li>Usage review and use-case expansion</li>
+            <li>Scale-phase playbook and department rollout guides</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process-bg" id="process">
+    <div class="section-inner">
+      <div class="section-label">How We Work</div>
+      <h2 class="section-title">From Assessment to Organization-Wide Adoption</h2>
+      <p class="section-sub">A four-phase engagement that moves your team from "we have AI access" to "AI is how we work."</p>
+
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-num">1</div>
+          <h4>Assess</h4>
+          <p>We map your current workflows through intake interviews and process analysis. We identify high-volume, repetitive, and bottleneck-creating work — the places where AI delivers fastest.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">2</div>
+          <h4>Design</h4>
+          <p>We build a prioritized deployment plan: which use cases to pilot first, which connectors to enable, which teams to start with, and what "success" looks like at 30 and 90 days.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">3</div>
+          <h4>Deploy</h4>
+          <p>Customized training day using live demos against your real tool stack. Every scenario is matched to your team's actual work — not generic examples that don't map to your business.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">4</div>
+          <h4>Optimize</h4>
+          <p>Pilot-phase support, usage review, and scale planning. We help you encode the best-performer workflow into reusable skills that every team member benefits from.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATURITY MODEL -->
+  <section class="maturity-bg" id="maturity">
+    <div class="section-inner">
+      <div class="section-label">The Framework</div>
+      <h2 class="section-title">The 5-Level AI Maturity Model</h2>
+      <p class="section-sub">Most teams start at Level 0. Our consulting work moves you up the ladder systematically — each level builds on the last and delivers real outcomes before advancing.</p>
+
+      <div class="maturity-grid">
+        <div class="maturity-row">
+          <div class="maturity-level"><div class="maturity-level-num">0</div><div class="maturity-level-label">Chat</div></div>
+          <div class="maturity-body">
+            <h4>Q&amp;A and Conversation</h4>
+            <p>Ask questions, get answers. Most teams start here — useful, but not yet leveraging context or tools. <code>Where is your team today?</code></p>
+          </div>
+        </div>
+        <div class="maturity-row maturity-current">
+          <div class="maturity-level"><div class="maturity-level-num">1</div><div class="maturity-level-label">Build</div></div>
+          <div class="maturity-body">
+            <h4>Finished Deliverables From Your Files &amp; Systems</h4>
+            <p>Claude reads your deal folder and drafts the investment memo. Reads your pipeline and surfaces at-risk deals. Reads meeting notes and writes the follow-up. This is the Level 1 win we target in training.</p>
+          </div>
+        </div>
+        <div class="maturity-row">
+          <div class="maturity-level"><div class="maturity-level-num">2</div><div class="maturity-level-label">Skill</div></div>
+          <div class="maturity-body">
+            <h4>Repeatable Workflows Encoded as Skills</h4>
+            <p>The best-performer's process becomes one reusable skill. <code>/weekly-pipeline-report</code> runs the same analysis every time, in your format, in 90 seconds.</p>
+          </div>
+        </div>
+        <div class="maturity-row">
+          <div class="maturity-level"><div class="maturity-level-num">3</div><div class="maturity-level-label">Automate</div></div>
+          <div class="maturity-body">
+            <h4>Skills That Run Without Being Asked</h4>
+            <p>Morning briefing fires at 7:30am — calendar, pipeline, Slack digest — all in one page. The team starts the day already briefed. Work that was never staffed now happens automatically.</p>
+          </div>
+        </div>
+        <div class="maturity-row">
+          <div class="maturity-level"><div class="maturity-level-num">4</div><div class="maturity-level-label">Scale</div></div>
+          <div class="maturity-body">
+            <h4>Department-Wide Plugins, Admin-Provisioned</h4>
+            <p>IT deploys a Legal plugin to every attorney. A Sales plugin to every rep. Org-wide AI infrastructure, not individual power users.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE PILLARS -->
+  <section class="pillars-bg" id="value">
+    <div class="section-inner">
+      <div class="section-label">The Outcome</div>
+      <h2 class="section-title">What Changes When This Works</h2>
+      <p class="section-sub">Four outcomes every successful Claude Cowork deployment delivers. These are our benchmarks — not aspirations.</p>
+
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon">⚡</div>
+          <h3>Speed</h3>
+          <p>Work that took hours compresses to minutes. 30-minute call prep becomes 2 minutes. A one-week contract review happens the same afternoon.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">🎯</div>
+          <h3>Quality</h3>
+          <p>Finished deliverables, not drafts. Financial models with formulas that tie. Customer responses grounded in your brand guide. Outputs in your format, every time.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">📡</div>
+          <h3>Scale</h3>
+          <p>Tribal knowledge encoded as skills becomes organizational infrastructure. Your best performer's workflow becomes everyone's workflow — without hiring.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">🔓</div>
+          <h3>New Capacity</h3>
+          <p>Work that always mattered but was never staffed — regulatory monitoring, per-account dashboards, competitive sweeps — now happens automatically.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section id="who">
+    <div class="section-inner">
+      <div class="section-label">Who This Is For</div>
+      <h2 class="section-title">Built for Teams Ready to Move Beyond Chat</h2>
+      <p class="section-sub">If your team has access to Claude but isn't seeing real workflow change, this is the gap we close.</p>
+
+      <div class="audience-grid">
+        <div class="audience-card">
+          <div class="audience-tag">Sales &amp; Revenue</div>
+          <h4>Sales Teams &amp; Revenue Leaders</h4>
+          <p>Pipeline reviews that used to take 30 minutes per rep now run in the background. Call prep, post-call CRM updates, competitive intelligence — automated and personalized.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-tag">Operations</div>
+          <h4>Ops &amp; Business Operations</h4>
+          <p>Daily digests, standup summaries, cross-system data pulls, project status reporting — the information-layer work that slows every ops team down, handled automatically.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-tag">Legal &amp; Compliance</div>
+          <h4>Legal &amp; Risk Teams</h4>
+          <p>Contract review throughput that consumes hours. Regulatory monitoring across dozens of sources. Knowledge locked in memos that nobody reads — now surfaced on demand.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-tag">Finance</div>
+          <h4>Finance &amp; FP&amp;A</h4>
+          <p>Dashboard builds that took weeks. Variance reports in the CFO's exact format. Non-technical staff building data views independently — without waiting on engineering.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-tag">Product &amp; Engineering</div>
+          <h4>Product &amp; Engineering Teams</h4>
+          <p>PRDs built from real usage data, customer quotes, and analytics. Sprint planning with dependency analysis. Release notes tailored to every audience automatically.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-tag">Leadership</div>
+          <h4>Executives &amp; Team Leads</h4>
+          <p>You know AI should be doing more for your team. You're not sure where to start, who should lead it, or what success looks like at 90 days. That's exactly what we map out together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <div class="quote-section">
+    <div class="quote-inner">
+      <p class="quote-text">"Claude Cowork helps teams do work at a scale that was hard to justify before. The human role becomes <em>validation, refinement, and decision-making</em> — not repetitive rework."</p>
+      <p class="quote-attr">— Joel Hron, CTO, Thomson Reuters</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contact">
+    <h2>Ready to See What This Looks Like for Your Team?</h2>
+    <p>Start with a 30-minute workflow conversation. We'll identify where AI can deliver the fastest results and what a realistic pilot looks like for your team.</p>
+    <a href="#" onclick="event.preventDefault();document.getElementById('emailPopup').classList.add('open')" class="cta-btn">Start the Conversation</a>
+    <p class="cta-note">No pitch. Just a practical conversation about your workflows.</p>
+  </section>
+
+  <!-- EMAIL POPUP -->
+  <div class="email-popup-overlay" id="emailPopup" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="email-popup">
+      <div class="email-popup-icon">✉️</div>
+      <h3>Let's talk workflows</h3>
+      <p>Email us to start the conversation. We'll get back to you within one business day.</p>
+      <div class="email-copy-row">
+        <span class="email-copy-text">david@workstreamapps.com</span>
+        <button class="email-copy-btn" onclick="
+          navigator.clipboard.writeText('david@workstreamapps.com').then(()=>{
+            this.textContent='Copied!';this.classList.add('copied');
+            setTimeout(()=>{this.textContent='Copy';this.classList.remove('copied')},2000)
+          })
+        ">Copy</button>
+      </div>
+      <button class="email-popup-close" onclick="document.getElementById('emailPopup').classList.remove('open')">Close</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 WorkStream Apps LLC — Cowork Consulting &amp; Training</p>
+    <p>
+      <a href="/">Home</a>
+      <a href="/anchor">Anchor App</a>
+      <a href="/consulting">Consulting</a>
+      <a href="https://www.runfreeapps.com" target="_blank" rel="noopener">RunFreeApps</a>
+      <a href="/privacy.html">Privacy</a>
+    </p>
+  </footer>
+
+</body>
+</html>
