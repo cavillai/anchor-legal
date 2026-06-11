@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anchor Support — WorkStream Apps</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: #F7F9F8;
+      color: #2C3333;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(247,249,248,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid #E2E8F0;
+      padding: 0 32px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .nav-brand-name { font-size: 15px; font-weight: 700; color: #1B7A8A; }
+    .nav-back { font-size: 14px; color: #6B7B8D; text-decoration: none; font-weight: 500; }
+    .nav-back:hover { color: #1B7A8A; }
+
+    main {
+      flex: 1;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 64px 24px 80px;
+      width: 100%;
+    }
+    .icon-wrap {
+      width: 64px; height: 64px;
+      background: rgba(27,122,138,0.1);
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #2C3333;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      font-size: 17px;
+      color: #6B7B8D;
+      margin-bottom: 48px;
+      line-height: 1.6;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 2px 12px rgba(44,51,51,0.05);
+      margin-bottom: 16px;
+    }
+    .card h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #2C3333;
+      margin-bottom: 8px;
+    }
+    .card p {
+      font-size: 15px;
+      color: #6B7B8D;
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .email-display {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #F7F9F8;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 12px 16px;
+    }
+    .email-text {
+      font-family: monospace;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1B7A8A;
+      flex: 1;
+    }
+    .copy-btn {
+      background: #1B7A8A;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .copy-btn:hover { background: #155f6d; }
+    .faq-item { margin-bottom: 20px; }
+    .faq-item:last-child { margin-bottom: 0; }
+    .faq-q {
+      font-size: 15px;
+      font-weight: 700;
+      color: #2C3333;
+      margin-bottom: 4px;
+    }
+    .faq-a {
+      font-size: 14px;
+      color: #6B7B8D;
+      line-height: 1.6;
+    }
+    footer {
+      background: #2C3333;
+      padding: 28px 24px;
+      text-align: center;
+    }
+    footer p { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+    footer a { color: rgba(255,255,255,0.55); text-decoration: none; margin: 0 10px; font-size: 13px; }
+    footer a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/anchor/" class="nav-brand">
+      <svg width="22" height="22" viewBox="0 0 28 28" fill="none" stroke="#1B7A8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="14" cy="7" r="3"/>
+        <line x1="14" y1="10" x2="14" y2="24"/>
+        <line x1="7" y1="16" x2="21" y2="16"/>
+        <path d="M7 16 C7 22 11 25 14 26 C17 25 21 22 21 16"/>
+      </svg>
+      <span class="nav-brand-name">Anchor</span>
+    </a>
+    <a href="/anchor/" class="nav-back">Back to Anchor</a>
+  </nav>
+
+  <main>
+    <div class="icon-wrap" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1B7A8A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+    </div>
+
+    <h1>Anchor Support</h1>
+    <p class="subtitle">We're a small team and we read every message. Expect a reply within 1-2 business days.</p>
+
+    <div class="card">
+      <h2>Email Us</h2>
+      <p>For account questions, purchase issues, or anything else — reach us directly.</p>
+      <div class="email-display">
+        <span class="email-text">support@workstreamapps.com</span>
+        <button class="copy-btn" id="copy-btn" onclick="navigator.clipboard.writeText('support@workstreamapps.com').then(function(){ var b = document.getElementById('copy-btn'); b.textContent = 'Copied!'; b.style.background = '#7FB069'; setTimeout(function(){ b.textContent = 'Copy'; b.style.background = '#1B7A8A'; }, 2000); })">Copy</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Common Questions</h2>
+      <div class="faq-item">
+        <p class="faq-q">How do I restore my Pro purchase on a new device?</p>
+        <p class="faq-a">Open Anchor, go to Settings, and tap "Restore Purchases." Your purchase is linked to your Apple ID and will restore automatically.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Is my data backed up?</p>
+        <p class="faq-a">Anchor stores everything on-device. Your data is included in your iPhone's iCloud backup automatically if you have iCloud Backup enabled in Settings.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">How do I cancel my monthly subscription?</p>
+        <p class="faq-a">Subscriptions are managed by Apple. Go to Settings > Apple ID > Subscriptions on your iPhone to cancel anytime.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Why isn't the AI companion showing on my device?</p>
+        <p class="faq-a">The AI companion requires Apple Intelligence, available on iPhone 16 or iPhone 15 Pro and later running iOS 26. The core chain and check-offs work on all supported devices.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>WorkStream Apps LLC</p>
+    <div>
+      <a href="/anchor/">Anchor</a>
+      <a href="/anchor/privacy">Privacy Policy</a>
+      <a href="/anchor/terms">Terms of Use</a>
+    </div>
+  </footer>
+
+</body>
+</html>
