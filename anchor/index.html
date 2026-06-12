@@ -240,7 +240,7 @@
     .sim-habit-row.swiping .sim-swipe-arrow { opacity: 1; }
     .sim-check {
       width: 14px; height: 14px; border-radius: 50%;
-      background: #7FB069; flex-shrink: 0;
+      background: #5E8C4A; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
     }
     .sim-check-empty {
@@ -249,13 +249,13 @@
       transition: background 0.25s, border-color 0.25s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
     }
     .sim-check-empty.filling {
-      background: #7FB069;
-      border-color: #7FB069;
+      background: #5E8C4A;
+      border-color: #5E8C4A;
       transform: scale(1.25);
     }
     .sim-check-empty.filled {
-      background: #7FB069;
-      border-color: #7FB069;
+      background: #5E8C4A;
+      border-color: #5E8C4A;
       transform: scale(1);
     }
     /* Checkmark inside the filled circle */
@@ -315,7 +315,7 @@
 
     /* Companion screen */
     .screen-companion {
-      background: linear-gradient(180deg, #EEE8FF 0%, #F7F9F8 30%);
+      background: linear-gradient(180deg, #C6EBE5 0%, #F7F9F8 30%);
       flex: 1;
       padding: 24px 16px 16px;
       display: flex; flex-direction: column; gap: 8px;
@@ -720,8 +720,8 @@
   <!-- SCREENSHOT MOCKUPS -->
   <section class="screens-section">
     <div class="screens-label">The App</div>
-    <h2 class="screens-title">Three tabs. One question answered each time.</h2>
-    <p class="screens-sub">Where did I leave off? What's next? Am I okay? Anchor answers all three — without you having to look for the answer.</p>
+    <h2 class="screens-title">Two tabs. Three questions answered instantly.</h2>
+    <p class="screens-sub">Where did I leave off? What's next? Am I okay? Anchor answers all three in under 3 seconds — without you having to hunt for anything.</p>
 
     <div class="screens-row">
 
@@ -812,12 +812,16 @@
               </div>
             </div>
             <div class="sim-card">
-              <div class="sim-card-title">How's your day?</div>
-              <div class="sim-card-sub">Tap to check in</div>
+              <div class="sim-card-title" style="margin-bottom:5px;">How's today?</div>
+              <div style="display:flex;gap:4px;">
+                <div style="background:#5E8C4A;color:#fff;font-size:5px;font-weight:700;padding:3px 7px;border-radius:6px;">Good</div>
+                <div style="background:#F7F9F8;border:1px solid #E2E8F0;color:#667484;font-size:5px;font-weight:700;padding:3px 7px;border-radius:6px;">Okay</div>
+                <div style="background:#F7F9F8;border:1px solid #E2E8F0;color:#667484;font-size:5px;font-weight:700;padding:3px 7px;border-radius:6px;">Heavy</div>
+              </div>
             </div>
-            <div class="sim-card">
-              <div class="sim-card-title">Tonight</div>
-              <div class="sim-card-sub">1 routine · Wind down</div>
+            <div class="sim-habit-row">
+              <div class="sim-check"><div class="sim-check-inner"></div></div>
+              <div class="sim-habit-text">Wind down</div>
             </div>
           </div>
         </div>
