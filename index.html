@@ -442,7 +442,7 @@
     <p>Thoughtful iOS apps and hands-on consulting that reduce friction, build momentum, and actually fit how people work.</p>
     <div class="hero-cta">
       <a href="#apps" class="btn-primary">See Our Work</a>
-      <a href="#" onclick="event.preventDefault();document.getElementById('emailPopup').classList.add('open')" class="btn-ghost">Get in Touch</a>
+      <a href="#" onclick="event.preventDefault();document.getElementById('threeQPopup').classList.add('open')" class="btn-ghost">Three Questions</a>
     </div>
   </section>
 
@@ -558,6 +558,40 @@
     </div>
   </footer>
 
+  <!-- THREE QUESTIONS POPUP -->
+  <div class="email-popup-overlay" id="threeQPopup" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="email-popup" style="max-width:480px;width:90%;">
+      <div class="email-popup-icon">💬</div>
+      <h3>Three Questions</h3>
+      <p style="margin-bottom:1.25rem;font-size:14px;color:#666;">Takes 2 minutes. Helps me understand how I can actually help.</p>
+      <form id="threeQForm" action="https://formspree.io/f/xpqeonqb" method="POST" style="text-align:left;">
+        <input type="hidden" name="_subject" value="New inquiry from workstreamapps.com">
+        <div style="margin-bottom:1rem;">
+          <label style="display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:#333;">1. What is the biggest problem you are trying to solve right now?</label>
+          <textarea name="problem" required rows="3" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;box-sizing:border-box;"></textarea>
+        </div>
+        <div style="margin-bottom:1rem;">
+          <label style="display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:#333;">2. What have you tried before?</label>
+          <textarea name="tried_before" required rows="3" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;box-sizing:border-box;"></textarea>
+        </div>
+        <div style="margin-bottom:1.25rem;">
+          <label style="display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:#333;">3. Why is now the right time to address this?</label>
+          <textarea name="why_now" required rows="3" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;box-sizing:border-box;"></textarea>
+        </div>
+        <div style="margin-bottom:1rem;">
+          <label style="display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:#333;">Your email (so I can reply)</label>
+          <input type="email" name="email" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;box-sizing:border-box;">
+        </div>
+        <button type="submit" style="width:100%;padding:12px;background:#1B7A8A;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;">Send</button>
+      </form>
+      <div id="threeQSuccess" style="display:none;text-align:center;padding:1rem 0;">
+        <div style="font-size:32px;margin-bottom:8px;">✓</div>
+        <p style="font-weight:500;">Got it. I'll be in touch soon.</p>
+      </div>
+      <button class="email-popup-close" onclick="document.getElementById('threeQPopup').classList.remove('open')" style="margin-top:1rem;">Close</button>
+    </div>
+  </div>
+
   <!-- EMAIL POPUP -->
   <div class="email-popup-overlay" id="emailPopup" onclick="if(event.target===this)this.classList.remove('open')">
     <div class="email-popup">
@@ -573,6 +607,25 @@
   </div>
 
   <script>
+    document.getElementById('threeQForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var form = this;
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(res) {
+        if (res.ok) {
+          form.style.display = 'none';
+          document.getElementById('threeQSuccess').style.display = 'block';
+        } else {
+          alert('Something went wrong. Please email david@workstreamapps.com directly.');
+        }
+      }).catch(function() {
+        alert('Something went wrong. Please email david@workstreamapps.com directly.');
+      });
+    });
+
     function copyEmail() {
       navigator.clipboard.writeText('david@workstreamapps.com').then(function() {
         var btn = document.getElementById('copyBtn');
