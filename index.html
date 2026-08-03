@@ -199,9 +199,28 @@
       font-size: 28px;
       flex-shrink: 0;
     }
-    .project-icon.anchor  { background: linear-gradient(135deg, #C6EBE5, #A8D8E0); }
-    .project-icon.run     { background: linear-gradient(135deg, #FFE0C8, #FFDAB3); }
-    .project-icon.cowork  { background: linear-gradient(135deg, #D4E8FF, #BDD5F0); }
+    .project-icon.anchor      { background: linear-gradient(135deg, #C6EBE5, #A8D8E0); }
+    .project-icon.run         { background: linear-gradient(135deg, #FFE0C8, #FFDAB3); }
+    .project-icon.cowork      { background: linear-gradient(135deg, #D4E8FF, #BDD5F0); }
+    .project-icon.seenonmain  { background: linear-gradient(135deg, #FDE68A, #FBBF24); padding: 8px; }
+    .project-icon.seenonmain img { width: 100%; height: 100%; border-radius: 10px; display: block; }
+    .project-card.featured {
+      border: 1.5px solid #F5C871;
+      box-shadow: 0 4px 24px rgba(217,119,6,0.14);
+    }
+    .featured-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: #92400E;
+      background: #FEF3C7;
+      border: 1px solid #FDE68A;
+      border-radius: 20px;
+      padding: 3px 10px;
+      margin-bottom: 6px;
+    }
     .project-meta { flex: 1; }
     .project-tag {
       font-size: 11px;
@@ -454,6 +473,33 @@
       <p class="section-sub">From iOS apps to consulting engagements — everything we ship is designed around how people actually think and work.</p>
 
       <div class="projects-grid">
+
+        <!-- SEENONMAIN -->
+        <div class="project-card featured">
+          <div class="project-card-header">
+            <div class="project-icon seenonmain"><img src="/images/seenonmain-icon.svg" alt="" /></div>
+            <div class="project-meta">
+              <div class="featured-badge">Primary Business</div>
+              <div class="project-tag">Done-For-You SaaS</div>
+              <div class="project-name">SeenOnMain</div>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">
+              A Main Street mini-website with AI that knows your business and follows up like you would. We build and run a complete lead-capture and follow-up system for local businesses — a real mini-website, not just a bare form.
+            </p>
+            <ul class="project-features">
+              <li>Lead + quote forms with AI-written follow-up, Day 1–14</li>
+              <li>Instant text alert the moment a lead comes in</li>
+              <li>Your own dedicated server — your data, always yours</li>
+              <li>From $99/mo · no setup fee · live in days</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://www.seenonmain.com" target="_blank" rel="noopener" class="link-btn primary">Visit Site</a>
+              <a href="https://www.seenonmain.com/workflows/demo" target="_blank" rel="noopener" class="link-btn secondary">See the Demo</a>
+            </div>
+          </div>
+        </div>
 
         <!-- ANCHOR -->
         <div class="project-card">
