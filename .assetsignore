@@ -1,0 +1,7 @@
+# Keep repo and config files out of the published site
+.git
+.gitignore
+.assetsignore
+wrangler.jsonc
+.wrangler
+node_modules
