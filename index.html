@@ -3,8 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WorkStream Apps LLC — Apps & Consulting for Real Life</title>
-  <meta name="description" content="WorkStream Apps LLC builds thoughtful iOS apps and consulting services for people who want less friction and more focus in daily life." />
+  <title>WorkStream Apps — Software for Local Businesses & Daily Life</title>
+  <meta name="description" content="WorkStream Apps LLC builds practical software: SeenOnMain for home-service businesses, the Anchor ADHD routine app for iPhone, and RunFreeApps for self-hosting." />
+  <link rel="canonical" href="https://workstreamapps.com/" />
+  <meta name="theme-color" content="#1B7A8A" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="WorkStream Apps LLC" />
+  <meta property="og:url" content="https://workstreamapps.com/" />
+  <meta property="og:title" content="WorkStream Apps — Software for Local Businesses & Daily Life" />
+  <meta property="og:description" content="SeenOnMain for home-service businesses, the Anchor ADHD routine app for iPhone, and RunFreeApps for self-hosting. Built in North Carolina." />
+  <meta name="twitter:card" content="summary" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "WorkStream Apps LLC",
+    "url": "https://workstreamapps.com/",
+    "email": "david@workstreamapps.com",
+    "founder": {
+      "@type": "Person",
+      "name": "David Cavill",
+      "jobTitle": "Founder",
+      "url": "https://linktr.ee/davidcavill"
+    },
+    "address": { "@type": "PostalAddress", "addressRegion": "NC", "addressCountry": "US" },
+    "brand": [
+      { "@type": "Brand", "name": "SeenOnMain", "url": "https://seenonmain.com/" },
+      { "@type": "Brand", "name": "Anchor: ADHD Companion", "url": "https://workstreamapps.com/anchor/" },
+      { "@type": "Brand", "name": "RunFreeApps", "url": "https://runfreeapps.com/" }
+    ]
+  }
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -69,6 +99,10 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--teal); }
+    a:focus-visible, button:focus-visible, textarea:focus-visible, input:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
 
     /* ── HERO ── */
     .hero {
@@ -201,7 +235,6 @@
     }
     .project-icon.anchor      { background: linear-gradient(135deg, #C6EBE5, #A8D8E0); }
     .project-icon.run         { background: linear-gradient(135deg, #FFE0C8, #FFDAB3); }
-    .project-icon.cowork      { background: linear-gradient(135deg, #D4E8FF, #BDD5F0); }
     .project-icon.seenonmain  { background: linear-gradient(135deg, #FDE68A, #FBBF24); padding: 8px; }
     .project-icon.seenonmain img { width: 100%; height: 100%; border-radius: 10px; display: block; }
     .project-card.featured {
@@ -430,9 +463,14 @@
     footer a:hover { color: #fff; }
 
     /* ── RESPONSIVE ── */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
     @media (max-width: 600px) {
       nav { padding: 0 16px; }
-      .nav-links { display: none; }
+      .nav-links { gap: 16px; }
+      .nav-links li:not(.nav-contact) { display: none; }
       .hero { padding: 72px 20px 60px; }
       section { padding: 60px 20px; }
     }
@@ -448,20 +486,19 @@
     </a>
     <ul class="nav-links">
       <li><a href="#apps">Apps</a></li>
-      <li><a href="/consulting">Consulting</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#" onclick="event.preventDefault();document.getElementById('emailPopup').classList.add('open')">Contact</a></li>
+      <li class="nav-contact"><a href="mailto:david@workstreamapps.com" onclick="event.preventDefault();openPopup('emailPopup')">Contact</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-tag">WorkStream Apps LLC</div>
-    <h1>Apps & Consulting Built for Real Life</h1>
-    <p>Thoughtful iOS apps and hands-on consulting that reduce friction, build momentum, and actually fit how people work.</p>
+    <h1>Software Built for Real Life</h1>
+    <p>Practical software that takes the busywork off your plate, from catching every lead for local businesses to keeping daily routines on track.</p>
     <div class="hero-cta">
       <a href="#apps" class="btn-primary">See Our Work</a>
-      <a href="#" onclick="event.preventDefault();document.getElementById('threeQPopup').classList.add('open')" class="btn-ghost">Three Questions</a>
+      <a href="#" onclick="event.preventDefault();openPopup('threeQPopup')" class="btn-ghost">Three Questions</a>
     </div>
   </section>
 
@@ -469,34 +506,34 @@
   <section id="apps">
     <div class="section-inner">
       <div class="section-label">What We Build</div>
-      <h2 class="section-title">Apps & Services</h2>
-      <p class="section-sub">From iOS apps to consulting engagements — everything we ship is designed around how people actually think and work.</p>
+      <h2 class="section-title">Our Products</h2>
+      <p class="section-sub">A web platform for local businesses, an iPhone app, and a self-hosting tool. Each one is built around how people actually think and work.</p>
 
       <div class="projects-grid">
 
         <!-- SEENONMAIN -->
         <div class="project-card featured">
           <div class="project-card-header">
-            <div class="project-icon seenonmain"><img src="/images/seenonmain-icon.svg" alt="" /></div>
+            <div class="project-icon seenonmain"><img src="/images/seenonmain-icon.svg" alt="" width="44" height="44" /></div>
             <div class="project-meta">
               <div class="featured-badge">Primary Business</div>
-              <div class="project-tag">Done-For-You SaaS</div>
+              <div class="project-tag">Lead Response · Home Services</div>
               <div class="project-name">SeenOnMain</div>
             </div>
           </div>
           <div class="project-body">
             <p class="project-desc">
-              A Main Street mini-website with AI that knows your business and follows up like you would. We build and run a complete lead-capture and follow-up system for local businesses — a real mini-website, not just a bare form.
+              For plumbers, HVAC techs, electricians and other home-service businesses. SeenOnMain rings your phone with the lead's details the second a call or form comes in, then sends follow-up emails for 14 days if they don't book.
             </p>
             <ul class="project-features">
-              <li>Lead + quote forms with AI-written follow-up, Day 1–14</li>
-              <li>Instant text alert the moment a lead comes in</li>
-              <li>Your own dedicated server — your data, always yours</li>
-              <li>From $99/mo · no setup fee · live in days</li>
+              <li>Instant call alert with the lead's details</li>
+              <li>Missed-call text back, so callers aren't left at voicemail</li>
+              <li>14 days of follow-up emails until they book</li>
+              <li>From $99/mo · 14 days free</li>
             </ul>
             <div class="project-links">
-              <a href="https://www.seenonmain.com" target="_blank" rel="noopener" class="link-btn primary">Visit Site</a>
-              <a href="https://www.seenonmain.com/workflows/demo" target="_blank" rel="noopener" class="link-btn secondary">See the Demo</a>
+              <a href="https://seenonmain.com" target="_blank" rel="noopener" class="link-btn primary">Visit Site</a>
+              <a href="https://seenonmain.com/demo" target="_blank" rel="noopener" class="link-btn secondary">Try the Demo</a>
             </div>
           </div>
         </div>
@@ -531,49 +568,23 @@
         <!-- RUNFREEAPPS -->
         <div class="project-card">
           <div class="project-card-header">
-            <div class="project-icon run">🏃</div>
+            <div class="project-icon run">🖥️</div>
             <div class="project-meta">
-              <div class="project-tag">iOS App · RunFreeApps</div>
+              <div class="project-tag">Web Platform · Self-Hosting</div>
               <div class="project-name">RunFreeApps</div>
             </div>
           </div>
           <div class="project-body">
             <p class="project-desc">
-              iOS apps built around movement, freedom, and getting outside. RunFreeApps designs experiences for people who are active, on the go, and don't want tech getting in the way.
+              Run open-source software on your own cloud server without needing hosting expertise. RunFreeApps deploys and monitors the apps in your own DigitalOcean account, so your data stays yours.
             </p>
             <ul class="project-features">
-              <li>Built for active, on-the-go users</li>
-              <li>Clean, fast, minimal UI</li>
-              <li>Privacy-first — no unnecessary tracking</li>
+              <li>Deploy open-source apps without the setup work</li>
+              <li>Runs in your own DigitalOcean account</li>
+              <li>Monitoring, backups and updates handled for you</li>
             </ul>
             <div class="project-links">
-              <a href="https://www.runfreeapps.com" target="_blank" rel="noopener" class="link-btn primary">Visit Site</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- COWORK CONSULTING -->
-        <div class="project-card">
-          <div class="project-card-header">
-            <div class="project-icon cowork">🤝</div>
-            <div class="project-meta">
-              <div class="project-tag">Consulting & Training</div>
-              <div class="project-name">Cowork Consulting & Training</div>
-            </div>
-          </div>
-          <div class="project-body">
-            <p class="project-desc">
-              Hands-on consulting and training for teams and individuals navigating coworking, productivity systems, and modern work environments. Real tools, real people, real results.
-            </p>
-            <ul class="project-features">
-              <li>Coworking strategy & space consulting</li>
-              <li>Productivity systems for teams</li>
-              <li>1-on-1 and group training sessions</li>
-            </ul>
-            <div class="project-links">
-              <a href="/consulting" class="link-btn primary">Learn More</a>
-              <a href="https://www.runfreeapps.com/cowork-training" class="link-btn secondary">Training Intake</a>
-              <a href="#" onclick="event.preventDefault();document.getElementById('emailPopup').classList.add('open')" class="link-btn secondary">Inquire</a>
+              <a href="https://runfreeapps.com" target="_blank" rel="noopener" class="link-btn primary">Visit Site</a>
             </div>
           </div>
         </div>
@@ -584,49 +595,49 @@
 
   <!-- ABOUT -->
   <div class="about-strip" id="about">
-    <img src="/images/david.png" alt="David Cavill" class="about-avatar" />
+    <img src="/images/david.jpg" alt="David Cavill" class="about-avatar" width="110" height="110" loading="lazy" />
     <h2>David Cavill — Founder</h2>
-    <p>Builder, consultant, and app developer based in the Research Triangle Raleigh/Durham/Chapel Hill area of North Carolina. I build tools that make daily life less complicated for real people, including myself.</p>
+    <p>Builder and app developer based in North Carolina's Research Triangle (Raleigh, Durham and Chapel Hill). I build tools that make daily life less complicated for real people, including myself.</p>
     <div class="social-links">
       <a href="https://linktr.ee/davidcavill" target="_blank" rel="noopener" class="social-link">🌿 Linktree</a>
-      <button onclick="document.getElementById('emailPopup').classList.add('open')" class="social-link" style="border:none;cursor:pointer;">✉️ Email</button>
-      <a href="https://www.runfreeapps.com" target="_blank" rel="noopener" class="social-link">🏃 RunFreeApps</a>
+      <button type="button" onclick="openPopup('emailPopup')" class="social-link" style="border:none;cursor:pointer;font-family:inherit;">✉️ Email</button>
+      <a href="https://seenonmain.com" target="_blank" rel="noopener" class="social-link">📍 SeenOnMain</a>
     </div>
   </div>
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2026 WorkStream Apps LLC · All rights reserved.</p>
+    <p>© <span id="year">2026</span> WorkStream Apps LLC · North Carolina · All rights reserved.</p>
     <div>
       <a href="/anchor/privacy">Privacy Policy</a>
       <a href="/anchor/terms">Terms of Use</a>
-      <button onclick="document.getElementById('emailPopup').classList.add('open')" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.55);font-size:13px;margin:0 10px;font-family:inherit;">Contact</button>
+      <button type="button" onclick="openPopup('emailPopup')" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.55);font-size:13px;margin:0 10px;font-family:inherit;">Contact</button>
     </div>
   </footer>
 
   <!-- THREE QUESTIONS POPUP -->
-  <div class="email-popup-overlay" id="threeQPopup" onclick="if(event.target===this)this.classList.remove('open')">
-    <div class="email-popup" style="max-width:480px;width:90%;">
+  <div class="email-popup-overlay" id="threeQPopup" onclick="if(event.target===this)closePopup('threeQPopup')">
+    <div class="email-popup" role="dialog" aria-modal="true" aria-labelledby="threeQTitle" style="max-width:480px;width:90%;">
       <div class="email-popup-icon">💬</div>
-      <h3>Three Questions</h3>
+      <h3 id="threeQTitle">Three Questions</h3>
       <p style="margin-bottom:1.25rem;font-size:14px;color:#666;">Takes 2 minutes. Helps me understand how I can actually help.</p>
       <form id="threeQForm" action="https://formspree.io/f/xpqeonqb" method="POST" style="text-align:left;">
         <input type="hidden" name="_subject" value="New inquiry from workstreamapps.com">
         <div style="margin-bottom:1rem;">
-          <label style="display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:#333;">1. What is the biggest problem you are trying to solve right now?</label>
-          <textarea name="problem" required rows="3" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;box-sizing:border-box;"></textarea>
+          <label for="q1" style="display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:#333;">1. What is the biggest problem you are trying to solve right now?</label>
+          <textarea id="q1" name="problem" required rows="3" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;box-sizing:border-box;"></textarea>
         </div>
         <div style="margin-bottom:1rem;">
-          <label style="display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:#333;">2. What have you tried before?</label>
-          <textarea name="tried_before" required rows="3" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;box-sizing:border-box;"></textarea>
+          <label for="q2" style="display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:#333;">2. What have you tried before?</label>
+          <textarea id="q2" name="tried_before" required rows="3" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;box-sizing:border-box;"></textarea>
         </div>
         <div style="margin-bottom:1.25rem;">
-          <label style="display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:#333;">3. Why is now the right time to address this?</label>
-          <textarea name="why_now" required rows="3" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;box-sizing:border-box;"></textarea>
+          <label for="q3" style="display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:#333;">3. Why is now the right time to address this?</label>
+          <textarea id="q3" name="why_now" required rows="3" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;box-sizing:border-box;"></textarea>
         </div>
         <div style="margin-bottom:1rem;">
-          <label style="display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:#333;">Your email (so I can reply)</label>
-          <input type="email" name="email" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;box-sizing:border-box;">
+          <label for="qEmail" style="display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:#333;">Your email (so I can reply)</label>
+          <input id="qEmail" type="email" name="email" autocomplete="email" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;box-sizing:border-box;">
         </div>
         <button type="submit" style="width:100%;padding:12px;background:#1B7A8A;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;">Send</button>
       </form>
@@ -634,25 +645,45 @@
         <div style="font-size:32px;margin-bottom:8px;">✓</div>
         <p style="font-weight:500;">Got it. I'll be in touch soon.</p>
       </div>
-      <button class="email-popup-close" onclick="document.getElementById('threeQPopup').classList.remove('open')" style="margin-top:1rem;">Close</button>
+      <button type="button" class="email-popup-close" onclick="closePopup('threeQPopup')" style="margin-top:1rem;">Close</button>
     </div>
   </div>
 
   <!-- EMAIL POPUP -->
-  <div class="email-popup-overlay" id="emailPopup" onclick="if(event.target===this)this.classList.remove('open')">
-    <div class="email-popup">
+  <div class="email-popup-overlay" id="emailPopup" onclick="if(event.target===this)closePopup('emailPopup')">
+    <div class="email-popup" role="dialog" aria-modal="true" aria-labelledby="emailTitle">
       <div class="email-popup-icon">✉️</div>
-      <h3>Get in Touch</h3>
+      <h3 id="emailTitle">Get in Touch</h3>
       <p>Copy the email address below and reach out any time.</p>
       <div class="email-copy-row">
         <span class="email-copy-text">david@workstreamapps.com</span>
-        <button class="email-copy-btn" id="copyBtn" onclick="copyEmail()">Copy</button>
+        <button type="button" class="email-copy-btn" id="copyBtn" onclick="copyEmail()">Copy</button>
       </div>
-      <button class="email-popup-close" onclick="document.getElementById('emailPopup').classList.remove('open')">Close</button>
+      <button type="button" class="email-popup-close" onclick="closePopup('emailPopup')">Close</button>
     </div>
   </div>
 
   <script>
+    var lastFocus = null;
+    function openPopup(id) {
+      lastFocus = document.activeElement;
+      var el = document.getElementById(id);
+      el.classList.add('open');
+      var first = el.querySelector('textarea, input, .email-copy-btn');
+      if (first) first.focus();
+    }
+    function closePopup(id) {
+      document.getElementById(id).classList.remove('open');
+      if (lastFocus) lastFocus.focus();
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key !== 'Escape') return;
+      ['threeQPopup', 'emailPopup'].forEach(function(id) {
+        if (document.getElementById(id).classList.contains('open')) closePopup(id);
+      });
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+
     document.getElementById('threeQForm').addEventListener('submit', function(e) {
       e.preventDefault();
       var form = this;
@@ -673,6 +704,7 @@
     });
 
     function copyEmail() {
+      if (!navigator.clipboard) { window.location.href = 'mailto:david@workstreamapps.com'; return; }
       navigator.clipboard.writeText('david@workstreamapps.com').then(function() {
         var btn = document.getElementById('copyBtn');
         btn.textContent = 'Copied ✓';
