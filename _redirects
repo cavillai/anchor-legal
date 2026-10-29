@@ -10,3 +10,7 @@
 # Flat URL aliases
 /privacy          /anchor/privacy/index.html   200
 /terms            /anchor/terms/index.html     200
+
+# Claude Cowork consulting and training page, retired Oct 28 2026
+/consulting       /                            301
+/consulting/      /                            301
